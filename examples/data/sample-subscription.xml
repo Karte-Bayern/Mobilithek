@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d2LogicalModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <payloadPublication>
+    <situation>
+      <situationRecord id="sample-maintenance-1" xsi:type="MaintenanceWorks">
+        <generalPublicComment>
+          <comment>
+            <values>
+              <value>Sample roadworks near Munich</value>
+            </values>
+          </comment>
+        </generalPublicComment>
+        <overallStartTime>2026-06-19T08:00:00Z</overallStartTime>
+        <overallEndTime>2026-06-30T18:00:00Z</overallEndTime>
+        <groupOfLocations>
+          <locationForDisplay>
+            <latitude>48.1552</latitude>
+            <longitude>11.4536</longitude>
+          </locationForDisplay>
+          <locationForDisplay>
+            <latitude>48.1731</latitude>
+            <longitude>11.5068</longitude>
+          </locationForDisplay>
+          <locationForDisplay>
+            <latitude>48.1833</latitude>
+            <longitude>11.5636</longitude>
+          </locationForDisplay>
+        </groupOfLocations>
+      </situationRecord>
+      <situationRecord id="sample-abnormal-traffic-1" xsi:type="AbnormalTraffic">
+        <generalPublicComment>
+          <comment>
+            <values>
+              <value>Sample congestion near Augsburg</value>
+            </values>
+          </comment>
+        </generalPublicComment>
+        <overallStartTime>2026-06-19T12:00:00Z</overallStartTime>
+        <overallEndTime>2026-06-19T14:00:00Z</overallEndTime>
+        <locationForDisplay>
+          <latitude>48.3705</latitude>
+          <longitude>10.8853</longitude>
+        </locationForDisplay>
+      </situationRecord>
+    </situation>
+  </payloadPublication>
+</d2LogicalModel>

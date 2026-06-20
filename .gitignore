@@ -18,6 +18,12 @@ out/
 *.xml
 *.jsonl
 
+# Public demo fixtures.
+!examples/data/
+!examples/data/sample-subscription.xml
+!examples/maplibre/data/
+!examples/maplibre/data/sample-events.geojson
+
 # Build output.
 bin/
 dist/

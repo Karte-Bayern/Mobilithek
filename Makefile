@@ -168,12 +168,13 @@ vet:
 check: test
 	@set -euo pipefail; \
 	node --check examples/maplibre/app.js; \
-	if find . -type f \( -name '*.p12' -o -name '*.pfx' -o -name '*.key' -o -name '*.pem' -o -name '*.crt' -o -name '.env' -o -name '.env.*' -o -name '.DS_Store' \) -print -quit | grep -q .; then \
-		echo "Public-folder safety check failed: credential or metadata file found."; \
-		find . -type f \( -name '*.p12' -o -name '*.pfx' -o -name '*.key' -o -name '*.pem' -o -name '*.crt' -o -name '.env' -o -name '.env.*' -o -name '.DS_Store' \) -print; \
+	forbidden_files="$$(git ls-files --cached --others --exclude-standard | rg '(^|/)(\.DS_Store|\.env(\..*)?|[^/]+\.(p12|pfx|key|pem|crt|cer|der))$$' || true)"; \
+	if [[ -n "$$forbidden_files" ]]; then \
+		echo "Public-folder safety check failed: credential or metadata file would be committed."; \
+		printf '%s\n' "$$forbidden_files"; \
 		exit 1; \
 	fi; \
-	if rg -n "BEGIN (RSA |EC |OPENSSH |)PRIVATE KEY" .; then \
+	if git ls-files --cached --others --exclude-standard -z | xargs -0 rg -n "BEGIN (RSA |EC |OPENSSH |)PRIVATE KEY" --; then \
 		echo "Public-folder safety check failed: private key material found."; \
 		exit 1; \
 	fi; \

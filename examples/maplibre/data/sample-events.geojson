@@ -1,0 +1,55 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [11.4536, 48.1552],
+          [11.5068, 48.1731],
+          [11.5636, 48.1833]
+        ]
+      },
+      "properties": {
+        "id": "sample-maintenance-1",
+        "type": "MaintenanceWorks",
+        "title": "Sample roadworks near Munich",
+        "start": "2026-06-19T08:00:00Z",
+        "end": "2026-06-30T18:00:00Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [10.8978, 49.4387],
+          [11.0188, 49.4556],
+          [11.0817, 49.4521]
+        ]
+      },
+      "properties": {
+        "id": "sample-rerouting-1",
+        "type": "ReroutingManagement",
+        "title": "Sample rerouting near Nuremberg",
+        "start": "2026-06-19T10:00:00Z",
+        "end": "2026-06-20T20:00:00Z"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [10.8853, 48.3705]
+      },
+      "properties": {
+        "id": "sample-abnormal-traffic-1",
+        "type": "AbnormalTraffic",
+        "title": "Sample congestion near Augsburg",
+        "start": "2026-06-19T12:00:00Z",
+        "end": "2026-06-19T14:00:00Z"
+      }
+    }
+  ]
+}

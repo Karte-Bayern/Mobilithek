@@ -1,6 +1,9 @@
 package mobilithek
 
-import "testing"
+import (
+	"os"
+	"testing"
+)
 
 func TestGeoJSONFromDATEX2XML(t *testing.T) {
 	xml := []byte(`
@@ -37,5 +40,20 @@ func TestGeoJSONFromDATEX2XML(t *testing.T) {
 	}
 	if feature.Properties["title"] != "Roadworks near Munich" {
 		t.Fatalf("title = %q, want Roadworks near Munich", feature.Properties["title"])
+	}
+}
+
+func TestSampleSubscriptionFixtureConverts(t *testing.T) {
+	body, err := os.ReadFile("examples/data/sample-subscription.xml")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	geojson, err := GeoJSONFromDATEX2XML(body, "sample-subscription.xml")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got, want := len(geojson.Features), 2; got != want {
+		t.Fatalf("sample fixture produced %d features, want %d", got, want)
 	}
 }

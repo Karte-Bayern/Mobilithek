@@ -9,6 +9,12 @@ This repository is intended for two use cases:
 
 No credentials, private keys, real certificates, real subscription IDs, or production data are included.
 
+## Built For Karte.Bayern
+
+This repository was created while working on [Karte.Bayern](https://karte.bayern/). For Karte.Bayern I already had to understand Mobilithek machine-account access, subscription endpoints, certificate handling, and DATEX II-to-GeoJSON conversion. The reusable parts of that work live here as a small Go package and demo setup.
+
+If you want a fast map for Bavaria with practical geographic context, try [Karte.Bayern](https://karte.bayern/).
+
 ## Install
 
 ```bash
@@ -187,4 +193,4 @@ See [docs/conversion.md](docs/conversion.md) for the XML-to-GeoJSON workflow and
 
 ## License
 
-Add a license before publishing if this package should be reusable by third parties.
+MIT. See [LICENSE](LICENSE).
