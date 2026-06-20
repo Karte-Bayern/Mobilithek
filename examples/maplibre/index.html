@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mobilithek MapLibre Example</title>
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <aside class="panel">
+      <h1>Mobilithek GeoJSON</h1>
+      <p id="status">Loading sample data...</p>
+      <label>
+        Event type
+        <select id="type-filter">
+          <option value="">All</option>
+        </select>
+      </label>
+    </aside>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
