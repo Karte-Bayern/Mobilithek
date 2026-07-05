@@ -55,6 +55,12 @@ p {
   font-size: 13px;
 }
 
+.notice {
+  color: #b45309;
+  font-size: 12px;
+  font-style: italic;
+}
+
 .summary {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -200,6 +206,8 @@ select:focus {
 
 .badge {
   display: inline-flex;
+  align-items: center;
+  gap: 5px;
   width: fit-content;
   padding: 2px 7px;
   border-radius: 999px;
@@ -207,6 +215,20 @@ select:focus {
   color: #245344;
   font-size: 11px;
   font-weight: 700;
+}
+
+.event-swatch,
+.popup-swatch {
+  display: inline-block;
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.popup-swatch {
+  margin-right: 6px;
+  vertical-align: middle;
 }
 
 .panel-footer {
@@ -227,6 +249,24 @@ select:focus {
   margin: 0;
   color: #52606d;
   font-size: 12px;
+}
+
+.popup-details {
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.popup-details summary {
+  color: #245344;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.popup-details p {
+  max-height: 160px;
+  margin: 6px 0 0;
+  overflow: auto;
+  color: #52606d;
 }
 
 @media (max-width: 640px) {

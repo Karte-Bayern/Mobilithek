@@ -4,18 +4,22 @@ const roadFilterEl = document.querySelector("#road-filter");
 const statusFilterEl = document.querySelector("#status-filter");
 const resetFiltersEl = document.querySelector("#reset-filters");
 const eventListEl = document.querySelector("#event-list");
+const panelEl = document.querySelector(".panel");
 const visibleCountEl = document.querySelector("#visible-count");
 const currentCountEl = document.querySelector("#current-count");
 const futureCountEl = document.querySelector("#future-count");
 const dataURL = new URLSearchParams(window.location.search).get("data") || "data/real-roadworks.geojson";
 
-const colors = {
-  A8: "#c2410c",
-  A9: "#2563eb",
-  MaintenanceWorks: "#dc2626",
-  AbnormalTraffic: "#7c3aed",
-  ReroutingManagement: "#2563eb"
-};
+// Assigned to whichever road/type values actually appear in the loaded data,
+// so every road gets a distinct color instead of a fixed lookup table that
+// only covers a couple of hardcoded names.
+const palette = [
+  "#2563eb", "#dc2626", "#059669", "#d97706", "#7c3aed",
+  "#0891b2", "#db2777", "#65a30d", "#ea580c", "#4f46e5",
+  "#0d9488", "#9333ea", "#ca8a04", "#0284c7", "#be123c", "#16a34a"
+];
+const fallbackColor = "#475569";
+let colorByKey = new Map();
 
 const collator = new Intl.Collator("de", { numeric: true, sensitivity: "base" });
 
@@ -50,6 +54,7 @@ map.addControl(new maplibregl.NavigationControl(), "top-right");
 
 let events = null;
 let activeFeatureID = "";
+let activePopup = null;
 
 map.on("load", async () => {
   try {
@@ -64,20 +69,38 @@ map.on("load", async () => {
     return;
   }
 
+  colorByKey = buildColorByKey(events);
+
   map.addSource("events", {
     type: "geojson",
     data: events
   });
 
+  // Split into two layers by status: MapLibre line-dasharray cannot be a
+  // data-driven (per-feature) expression, so "future" gets its own dashed
+  // layer instead of a single layer with a status-dependent dash pattern.
   map.addLayer({
     id: "event-lines",
     type: "line",
     source: "events",
-    filter: ["==", ["geometry-type"], "LineString"],
+    filter: ["all", ["==", ["geometry-type"], "LineString"], ["!=", ["get", "status"], "future"]],
     paint: {
       "line-color": colorExpression(),
       "line-width": 4,
       "line-opacity": 0.82
+    }
+  });
+
+  map.addLayer({
+    id: "event-lines-planned",
+    type: "line",
+    source: "events",
+    filter: ["all", ["==", ["geometry-type"], "LineString"], ["==", ["get", "status"], "future"]],
+    paint: {
+      "line-color": colorExpression(),
+      "line-width": 4,
+      "line-opacity": 0.82,
+      "line-dasharray": [2, 1.6]
     }
   });
 
@@ -89,6 +112,7 @@ map.on("load", async () => {
     paint: {
       "circle-color": colorExpression(),
       "circle-radius": 7,
+      "circle-opacity": ["case", ["==", ["get", "status"], "future"], 0.55, 1],
       "circle-stroke-color": "#ffffff",
       "circle-stroke-width": 2
     }
@@ -162,7 +186,7 @@ function renderList(data) {
     button.setAttribute("aria-pressed", String(button.dataset.featureId === activeFeatureID));
     button.innerHTML = `
       <span class="event-topline">
-        <span class="badge">${escapeHtml(feature.properties.road || feature.properties.type || "Meldung")} · ${statusLabel(feature.properties.status)}</span>
+        <span class="badge"><span class="event-swatch" style="background:${colorFor(feature)}"></span>${escapeHtml(feature.properties.road || feature.properties.type || "Meldung")} · ${statusLabel(feature.properties.status)}</span>
         <span class="event-start">${formatDate(feature.properties.start)}</span>
       </span>
       <span class="event-title">${escapeHtml(feature.properties.title || "Ohne Titel")}</span>
@@ -200,7 +224,7 @@ function markActiveListItem() {
 }
 
 function bindPopups() {
-  for (const layer of ["event-lines", "event-points"]) {
+  for (const layer of ["event-lines", "event-lines-planned", "event-points"]) {
     map.on("click", layer, (event) => {
       showPopup(event.features[0], event.lngLat);
     });
@@ -225,16 +249,20 @@ function showPopup(feature, lngLat) {
   const source = properties.sourceUrl
     ? `<br>Quelle: <a href="${escapeAttribute(properties.sourceUrl)}" rel="noreferrer">${escapeHtml(properties.source || "Quelle")}</a>`
     : "";
+  const details = properties.description
+    ? `<details class="popup-details"><summary>Details</summary><p>${escapeHtml(properties.description)}</p></details>`
+    : "";
 
-  new maplibregl.Popup()
+  activePopup?.remove();
+  activePopup = new maplibregl.Popup({ maxWidth: "320px" })
     .setLngLat(anchor)
     .setHTML(`
-      <h2 class="popup-title">${escapeHtml(properties.title || "Meldung")}</h2>
+      <h2 class="popup-title"><span class="popup-swatch" style="background:${colorFor(feature)}"></span>${escapeHtml(properties.title || "Meldung")}</h2>
       <p class="popup-meta">
         ${escapeHtml(properties.subtitle || properties.type || "")}<br>
         Status: ${statusLabel(properties.status)}<br>
         Start: ${escapeHtml(formatDate(properties.start))}${source}
-      </p>
+      </p>${details}
     `)
     .addTo(map);
 }
@@ -248,8 +276,9 @@ function popupAnchor(feature) {
 }
 
 function fitToData(data) {
+  const padding = viewPadding();
   if (data.bbox) {
-    map.fitBounds(boundsFromBBox(data.bbox), { padding: 72, maxZoom: 11, duration: 400 });
+    map.fitBounds(boundsFromBBox(data.bbox), { padding, maxZoom: 11, duration: 400 });
     return;
   }
 
@@ -272,8 +301,20 @@ function fitToData(data) {
   }
 
   if (hasCoordinates) {
-    map.fitBounds(bounds, { padding: 72, maxZoom: 11, duration: 400 });
+    map.fitBounds(bounds, { padding, maxZoom: 11, duration: 400 });
   }
+}
+
+function viewPadding() {
+  // The panel overlays the left side of the map on wide screens and the
+  // bottom on narrow ones. Without accounting for it, fitBounds centers
+  // features (and their popups) behind the panel instead of the visible area.
+  const base = 72;
+  const rect = panelEl.getBoundingClientRect();
+  if (window.matchMedia("(max-width: 640px)").matches) {
+    return { top: base, right: base, left: base, bottom: rect.height + base };
+  }
+  return { top: base, right: base, bottom: base, left: rect.width + base };
 }
 
 function featureCoordinates(feature) {
@@ -289,13 +330,31 @@ function boundsFromBBox(bbox) {
   ];
 }
 
+function buildColorByKey(data) {
+  // Real excerpts use "road"; synthetic converter samples use "type". Colors
+  // are assigned from the palette in sorted order, so the mapping is stable
+  // across reloads and covers however many distinct values the data has.
+  const keys = [...new Set(data.features.map(colorKey).filter(Boolean))].sort(collator.compare);
+  return new Map(keys.map((key, index) => [key, palette[index % palette.length]]));
+}
+
+function colorKey(feature) {
+  return feature.properties.road || feature.properties.type;
+}
+
+function colorFor(feature) {
+  return colorByKey.get(colorKey(feature)) || fallbackColor;
+}
+
 function colorExpression() {
-  // Real excerpts use "road"; synthetic converter samples use "type".
+  if (colorByKey.size === 0) {
+    return fallbackColor;
+  }
   const expression = ["match", ["coalesce", ["get", "road"], ["get", "type"]]];
-  for (const [key, color] of Object.entries(colors)) {
+  for (const [key, color] of colorByKey) {
     expression.push(key, color);
   }
-  expression.push("#475569");
+  expression.push(fallbackColor);
   return expression;
 }
 

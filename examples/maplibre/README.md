@@ -4,6 +4,13 @@ This browser example demonstrates how a frontend can consume a prepared GeoJSON 
 
 It uses a static excerpt of 42 real roadworks from `data/real-roadworks.geojson` by default. That makes the GitHub Pages demo useful without publishing a full upstream export or requiring Mobilithek credentials.
 
+## Interface
+
+- Each road gets its own color, generated from the data so it works regardless of how many distinct roads are present.
+- Planned/future roadworks render as dashed lines; current ones are solid.
+- The search box, road filter, and status filter narrow the map, list, and summary counts together.
+- Clicking a list entry or a map feature opens a popup with an expandable "Details" section for the full description text.
+
 ## Run
 
 From the repository root:
