@@ -1,0 +1,154 @@
+{
+  "type": "FeatureCollection",
+  "name": "real-roadworks-excerpt",
+  "bbox": [10.973917, 48.034681, 11.674856, 50.029807],
+  "features": [
+    {
+      "type": "Feature",
+      "bbox": [10.973917, 48.256208, 11.30311, 48.401451],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[10.973917, 48.401451], [11.016576, 48.399211], [11.033715, 48.395898], [11.06173, 48.395047], [11.089686, 48.378225], [11.120826, 48.364282], [11.139737, 48.347801], [11.164486, 48.331713], [11.202358, 48.311105], [11.231978, 48.29471], [11.277656, 48.277056], [11.30311, 48.256208]]
+      },
+      "properties": {
+        "id": "2026-034275--vi-bs.2026-07-06_07-00-00-000.devi-zus.2026-07-06_07-00-00-000_006.de3",
+        "road": "A8",
+        "type": "SHORT_TERM_ROADWORKS",
+        "status": "future",
+        "title": "A8 | Friedberg (Bayern) - Dachau/Fürstenfeldbruck",
+        "subtitle": "Stuttgart -> München",
+        "start": "",
+        "description": "Die Baustelle ist zu folgenden Zeiträumen gültig: 06.07.26 von 11:00 bis 17:00 Uhr 07.07.26 von 11:00 bis 17:00 Uhr 08.07.26 von 11:00 bis 17:00 Uhr 09.07.26 von 11:00 bis 17:00 Uhr 10.07.26 von 11:00 bis 13:00 Uhr A8: Stuttgart -> München, zwischen 1.5 km hinter AS Friedberg (Bayern) und 4.2 km vor AS Dachau/Fürstenfeldbruck Länge: 30.61 km | Maximale Durchfahrtsbreite: 7.5 m Aplus A8 West - Sofortmaßnahmen Fahrbahnschäden (Bereich Beton)",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A8/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [10.990099, 48.396858, 11.025704, 48.401211],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[10.990099, 48.401211], [10.992406, 48.401059], [10.997025, 48.400752], [11.005398, 48.400186], [11.00983, 48.399887], [11.013129, 48.399655], [11.015791, 48.399337], [11.017377, 48.399063], [11.019058, 48.398694], [11.02081, 48.398223], [11.025075, 48.397005], [11.025704, 48.396858]]
+      },
+      "properties": {
+        "id": "2026-033925--vi-bs.2026-07-06_07-00-00-000.devi-zus.2026-07-06_07-00-00-000_005.de1",
+        "road": "A8",
+        "type": "SHORT_TERM_ROADWORKS",
+        "status": "future",
+        "title": "A8 | Kirchholz - Dasing",
+        "subtitle": "Stuttgart -> München",
+        "start": "",
+        "description": "Die Baustelle ist zu folgenden Zeiträumen gültig: 06.07.26 von 12:00 bis 17:00 Uhr 07.07.26 von 12:00 bis 17:00 Uhr 08.07.26 von 12:00 bis 17:00 Uhr A8: Stuttgart -> München, zwischen 0.5 km hinter Kirchholz und 3.1 km vor AS Dasing Länge: 2.7 km | Maximale Durchfahrtsbreite: 7.5 m Aplus A8 West - Bankettschälarbeiten - KW 28 - Sperre 1.Fs",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A8/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [11.673427, 48.034681, 11.674856, 48.035632],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[11.674856, 48.035632], [11.674441, 48.035342], [11.673616, 48.034801], [11.673427, 48.034681]]
+      },
+      "properties": {
+        "id": "2026-032122--vi-bs.2026-06-25_00-00-00-000.devi-zus.2026-06-25_00-00-00-000.de9",
+        "road": "A8",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A8 | Ottobrunn - München-Süd",
+        "subtitle": "München-Nord -> München-Süd",
+        "start": "2026-06-25T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 25.06.26 um 00:00 Uhr Ende: 03.08.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 03.08.26) A99: München-Nord -> München-Süd, zwischen 0.6 km hinter AS Ottobrunn und 1.4 km vor AK München-Süd Länge: 0.15 km | Maximale Durchfahrtsbreite: 7.5 m Hinweisbeschilderung zur Sperrung Luise-Kiesselbach-Tunnel",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A8/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [11.281101, 49.06337, 11.319464, 49.10871],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[11.319464, 49.06337], [11.313107, 49.066536], [11.30661, 49.06977], [11.297478, 49.074378], [11.295214, 49.075864], [11.29244, 49.078352], [11.290084, 49.081361], [11.288948, 49.083845], [11.287188, 49.090548], [11.283758, 49.103824], [11.283147, 49.105342], [11.281101, 49.10871]]
+      },
+      "properties": {
+        "id": "2025-050316--vi-bs.2026-04-13_00-00-00-000.devi-zus.2026-04-13_00-00-00-000_009.de3",
+        "road": "A9",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A9 | Greding - Offenbau",
+        "subtitle": "München -> Nürnberg",
+        "start": "2026-04-13T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 13.04.26 um 00:00 Uhr Ende: 15.08.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 15.08.26) A9: München -> Nürnberg, zwischen 1.9 km hinter Greding und 2.5 km vor Offenbau Länge: 6.1 km | Maximale Durchfahrtsbreite: 8.5 m A9 Erneuerung an der Decke D415",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A9/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [11.460185, 48.766857, 11.472896, 48.871801],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[11.460185, 48.766857], [11.461103, 48.773271], [11.460253, 48.782415], [11.462825, 48.79504], [11.466329, 48.812438], [11.468276, 48.81738], [11.472585, 48.825564], [11.472896, 48.830049], [11.470194, 48.836833], [11.465977, 48.84655], [11.464874, 48.853147], [11.467948, 48.871801]]
+      },
+      "properties": {
+        "id": "2023-001923--vi-bs.2025-11-12_00-00-00-000.devi-zus.2024-04-08_06-00-00-000.f_001.de15",
+        "road": "A9",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A9 | Ingolstadt-Süd - Denkendorf",
+        "subtitle": "München -> Nürnberg",
+        "start": "2025-11-12T00:00:00+01:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 12.11.25 um 00:00 Uhr Ende: 31.12.26 um 06:00 Uhr (Ende der Gesamtmaßnahme: 01.01.27) A9: München -> Nürnberg, zwischen 1.8 km hinter AS Ingolstadt-Süd und 6.7 km vor AS Denkendorf Länge: 11.89 km | Max. 60 km/h | Maximale Durchfahrtsbreite: 5.5 m A9 EA1 Stamham - IN Nord",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A9/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [11.607229, 50.028237, 11.607911, 50.029807],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[11.607911, 50.028237], [11.607871, 50.028466], [11.60779, 50.028752], [11.607679, 50.029002], [11.607542, 50.029236], [11.607358, 50.029551], [11.607229, 50.029807]]
+      },
+      "properties": {
+        "id": "2025-048792--vi-bs.2026-04-08_00-00-00-000.devi-zus.2026-04-13_00-00-00-000_005.de5",
+        "road": "A9",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A9 | Kulmbach/Neudrossenfeld - Bayreuth/Kulmbach",
+        "subtitle": "Bamberg -> Bayreuth",
+        "start": "2026-04-08T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 08.04.26 um 00:00 Uhr Ende: 25.07.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 19.11.26) A70: Bamberg -> Bayreuth, zwischen 9.1 km hinter AS Kulmbach/Neudrossenfeld und 7.0 km vor AD Bayreuth/Kulmbach Länge: 0.18 km | Maximale Durchfahrtsbreite: 3.5 m A9 Erneuerung an der Decke D292",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A9/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [11.203056, 49.351346, 11.203846, 49.357626],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[11.203846, 49.351346], [11.203846, 49.351367], [11.203784, 49.352007], [11.203593, 49.3533], [11.203501, 49.35408], [11.203404, 49.35487], [11.203325, 49.355468], [11.203056, 49.357626]]
+      },
+      "properties": {
+        "id": "2023-000427--vi-bs.2025-05-24_00-00-00-000.devi-zus.2023-09-25_00-00-00-000.f_001.de5",
+        "road": "A9",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A9 | Nürnberg/Feucht - Nürnberg-Ost",
+        "subtitle": "München -> Halle/Leipzig",
+        "start": "2025-05-24T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 24.05.25 um 00:00 Uhr Ende: 01.09.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 01.09.26) A9: München -> Halle/Leipzig, zwischen 0.2 km hinter AD Nürnberg/Feucht und 4.3 km vor AK Nürnberg-Ost Länge: 0.7 km | Maximale Durchfahrtsbreite: 5 m A9 Brückenneubau Schwarzachbrücke",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A9/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    }
+  ]
+}

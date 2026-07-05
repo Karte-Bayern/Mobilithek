@@ -23,6 +23,8 @@ out/
 !examples/data/sample-subscription.xml
 !examples/maplibre/data/
 !examples/maplibre/data/sample-events.geojson
+!examples/maplibre/data/real-roadworks.geojson
+!examples/maplibre/data/README.md
 
 # Build output.
 bin/

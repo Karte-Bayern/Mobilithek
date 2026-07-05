@@ -5,6 +5,7 @@ import (
 	"mime"
 	"net/http"
 	"strings"
+	"time"
 )
 
 type Response struct {
@@ -28,6 +29,32 @@ func (r *Response) ContentType() string {
 		return strings.TrimSpace(contentType)
 	}
 	return mediaType
+}
+
+func (r *Response) ETag() string {
+	if r == nil {
+		return ""
+	}
+	return strings.TrimSpace(r.Header.Get("ETag"))
+}
+
+func (r *Response) LastModified() string {
+	if r == nil {
+		return ""
+	}
+	return strings.TrimSpace(r.Header.Get("Last-Modified"))
+}
+
+func (r *Response) LastModifiedTime() (time.Time, bool) {
+	lastModified := r.LastModified()
+	if lastModified == "" {
+		return time.Time{}, false
+	}
+	parsed, err := http.ParseTime(lastModified)
+	if err != nil {
+		return time.Time{}, false
+	}
+	return parsed, true
 }
 
 type StatusError struct {

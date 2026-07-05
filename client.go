@@ -171,6 +171,10 @@ func WithInsecureSkipVerify(enabled bool) Option {
 }
 
 func (c *Client) FetchSubscription(ctx context.Context, subscriptionID string, endpoint EndpointKind) (*Response, error) {
+	return c.FetchSubscriptionWithHeaders(ctx, subscriptionID, endpoint, nil)
+}
+
+func (c *Client) FetchSubscriptionWithHeaders(ctx context.Context, subscriptionID string, endpoint EndpointKind, headers map[string]string) (*Response, error) {
 	urls, err := CandidateURLs(c.baseURL, subscriptionID, endpoint)
 	if err != nil {
 		return nil, err
@@ -179,7 +183,7 @@ func (c *Client) FetchSubscription(ctx context.Context, subscriptionID string, e
 	auto := normalizeEndpoint(endpoint) == EndpointAuto
 	var lastErr error
 	for _, candidate := range urls {
-		response, err := c.FetchURL(ctx, candidate, nil)
+		response, err := c.FetchURL(ctx, candidate, headers)
 		if err != nil {
 			lastErr = err
 			continue

@@ -87,6 +87,19 @@ go run ./cmd/mobilithek-fetch \
 
 The CLI writes the raw DATEX II XML to `out/subscription.xml` and, when `-geojson-out` is set, a generic event GeoJSON file to `out/events.geojson`.
 
+For conditional HTTP requests, pass standard validators from a previous response:
+
+```bash
+go run ./cmd/mobilithek-fetch \
+  -etag '"previous-etag"' \
+  -if-modified-since "Sun, 05 Jul 2026 12:00:00 GMT" \
+  -header "Accept-Language: de-DE" \
+  -out out/subscription.xml \
+  -geojson-out out/events.geojson
+```
+
+`-etag` sends `If-None-Match`, `-if-modified-since` sends `If-Modified-Since`, and repeated `-header` flags add further request headers. HTTP `304 Not Modified` is treated as a successful no-op.
+
 ## Use As A Go Package
 
 ```go
@@ -128,9 +141,19 @@ func main() {
 }
 ```
 
-## MapLibre Demo
+## MapLibre And GitHub Pages Demo
 
-The MapLibre example intentionally uses a tiny synthetic GeoJSON file by default. It demonstrates the frontend pattern without publishing subscription data and without requiring credentials.
+The MapLibre example is the GitHub Pages demo served at:
+
+```text
+https://karte-bayern.github.io/Mobilithek/examples/maplibre/
+```
+
+By default it loads a small curated excerpt of real roadworks from the public Autobahn-App API:
+
+- [examples/maplibre/data/real-roadworks.geojson](examples/maplibre/data/real-roadworks.geojson)
+
+The GeoJSON file intentionally contains only a few simplified features instead of a full live export. Each feature keeps its source URL and `fetchedAt` date.
 
 ```bash
 go run ./examples/maplibre
@@ -166,6 +189,8 @@ http://127.0.0.1:8787/?data=/converted/events.geojson
 
 See [docs/conversion.md](docs/conversion.md) for the XML-to-GeoJSON workflow and limitations.
 
+Generated GeoJSON follows the RFC 7946 coordinate order (`longitude, latitude`) and includes optional `bbox` members for the feature collection and individual features.
+
 ## Repository Layout
 
 ```text
@@ -176,7 +201,7 @@ See [docs/conversion.md](docs/conversion.md) for the XML-to-GeoJSON workflow and
 ├── docs/                      Operational notes
 ├── examples/data/             Synthetic XML fixture for converter testing
 ├── examples/fetch_subscription/
-├── examples/maplibre/         Browser demo with synthetic GeoJSON
+├── examples/maplibre/         Browser demo and GitHub Pages entry point
 ├── client.go                  HTTP and TLS client
 ├── datex.go                   Generic DATEX II event extraction
 ├── endpoints.go               Mobilithek endpoint URL helpers

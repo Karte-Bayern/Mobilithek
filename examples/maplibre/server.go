@@ -2,12 +2,17 @@ package main
 
 import (
 	"log"
+	"mime"
 	"net/http"
 	"os"
 	"path/filepath"
 )
 
 func main() {
+	if err := mime.AddExtensionType(".geojson", "application/geo+json"); err != nil {
+		log.Fatal(err)
+	}
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8787"

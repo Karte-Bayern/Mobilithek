@@ -9,14 +9,25 @@
   </head>
   <body>
     <aside class="panel">
-      <h1>Mobilithek GeoJSON</h1>
-      <p id="status">Loading sample data...</p>
-      <label>
-        Event type
-        <select id="type-filter">
-          <option value="">All</option>
-        </select>
-      </label>
+      <h1>Mobilithek Meldungen</h1>
+      <p id="status">Lade echte Beispielmeldungen...</p>
+      <div class="toolbar" aria-label="Filter">
+        <label>
+          Straße
+          <select id="road-filter">
+            <option value="">Alle</option>
+          </select>
+        </label>
+        <label>
+          Status
+          <select id="status-filter">
+            <option value="">Alle</option>
+            <option value="current">Aktuell</option>
+            <option value="future">Geplant</option>
+          </select>
+        </label>
+      </div>
+      <ol id="event-list" class="event-list"></ol>
     </aside>
     <div id="map"></div>
 

@@ -28,6 +28,10 @@ go run ./cmd/mobilithek-geojson \
   -out out/events.geojson
 ```
 
+The converter writes GeoJSON with RFC 7946 coordinate order (`longitude, latitude`). It filters invalid coordinates and adds optional `bbox` members in `[west, south, east, north]` order for the feature collection and each feature.
+
+The GitHub Pages demo in `examples/maplibre/` uses `examples/maplibre/data/real-roadworks.geojson`, a deliberately small excerpt of real public Autobahn-App roadworks. It is meant as a static display sample, not as a full mirror of the upstream data.
+
 ## Test Without Credentials
 
 The repository includes a tiny synthetic XML fixture:

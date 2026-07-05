@@ -57,3 +57,38 @@ func TestSampleSubscriptionFixtureConverts(t *testing.T) {
 		t.Fatalf("sample fixture produced %d features, want %d", got, want)
 	}
 }
+
+func TestEventsToGeoJSONAddsRFC7946BBoxesAndSkipsInvalidCoordinates(t *testing.T) {
+	geojson := EventsToGeoJSON([]Event{
+		{
+			ID: "line",
+			Coordinates: []Coordinate{
+				{Lat: 48.1, Lon: 11.4},
+				{Lat: 48.3, Lon: 11.8},
+				{Lat: 91, Lon: 11.9},
+			},
+		},
+		{
+			ID:          "invalid",
+			Coordinates: []Coordinate{{Lat: 0, Lon: 0}},
+		},
+	})
+
+	if got, want := len(geojson.Features), 1; got != want {
+		t.Fatalf("EventsToGeoJSON() produced %d features, want %d", got, want)
+	}
+	assertFloatSlice(t, geojson.BBox, []float64{11.4, 48.1, 11.8, 48.3})
+	assertFloatSlice(t, geojson.Features[0].BBox, []float64{11.4, 48.1, 11.8, 48.3})
+}
+
+func assertFloatSlice(t *testing.T, got []float64, want []float64) {
+	t.Helper()
+	if len(got) != len(want) {
+		t.Fatalf("len(%v) = %d, want %d", got, len(got), len(want))
+	}
+	for index := range got {
+		if got[index] != want[index] {
+			t.Fatalf("value[%d] = %f, want %f in %v", index, got[index], want[index], got)
+		}
+	}
+}

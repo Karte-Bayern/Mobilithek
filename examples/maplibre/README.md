@@ -2,7 +2,7 @@
 
 This browser example demonstrates how a frontend can consume a prepared GeoJSON event file.
 
-It uses synthetic sample data from `data/sample-events.geojson` by default. That makes the map testable without Mobilithek credentials.
+It uses a small static excerpt of real roadworks from `data/real-roadworks.geojson` by default. That makes the GitHub Pages demo useful without publishing a full upstream export or requiring Mobilithek credentials.
 
 ## Run
 
@@ -28,7 +28,7 @@ http://127.0.0.1:8787/?data=/converted/events.geojson
 
 The example server exposes only that exact converted file from `out/`.
 
-To test this flow without Mobilithek credentials, create `out/events.geojson` from the included synthetic XML:
+To test this conversion flow without Mobilithek credentials, create `out/events.geojson` from the included synthetic XML:
 
 ```bash
 go run ./cmd/mobilithek-geojson \
@@ -39,5 +39,6 @@ go run ./cmd/mobilithek-geojson \
 ## Notes
 
 - The example loads MapLibre GL JS from a CDN.
-- The included GeoJSON is intentionally small and synthetic.
+- `data/real-roadworks.geojson` is intentionally small, static, and simplified for GitHub Pages.
+- `data/sample-events.geojson` remains available as a synthetic fixture.
 - This demo does not require Mobilithek credentials.
