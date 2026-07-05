@@ -9,9 +9,32 @@
   </head>
   <body>
     <aside class="panel">
-      <h1>Mobilithek Meldungen</h1>
-      <p id="status">Lade echte Beispielmeldungen...</p>
-      <div class="toolbar" aria-label="Filter">
+      <header class="panel-header">
+        <p class="eyebrow">GitHub Pages Demo</p>
+        <h1>Mobilithek Meldungen</h1>
+        <p id="status">Lade echte Beispielmeldungen...</p>
+      </header>
+
+      <dl class="summary" aria-label="Meldungsübersicht">
+        <div>
+          <dt>Sichtbar</dt>
+          <dd id="visible-count">0</dd>
+        </div>
+        <div>
+          <dt>Aktuell</dt>
+          <dd id="current-count">0</dd>
+        </div>
+        <div>
+          <dt>Geplant</dt>
+          <dd id="future-count">0</dd>
+        </div>
+      </dl>
+
+      <div class="toolbar" aria-label="Meldungen filtern">
+        <label class="search-label">
+          Suche
+          <input id="search-filter" type="search" placeholder="Ort, Straße, Richtung">
+        </label>
         <label>
           Straße
           <select id="road-filter">
@@ -26,8 +49,14 @@
             <option value="future">Geplant</option>
           </select>
         </label>
+        <button id="reset-filters" class="reset-button" type="button">Zurücksetzen</button>
       </div>
+
       <ol id="event-list" class="event-list"></ol>
+
+      <footer class="panel-footer">
+        <a href="https://verkehr.autobahn.de/o/autobahn/" rel="noreferrer">Autobahn-App API</a>
+      </footer>
     </aside>
     <div id="map"></div>
 

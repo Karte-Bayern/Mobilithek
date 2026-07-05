@@ -1,7 +1,12 @@
 const statusEl = document.querySelector("#status");
+const searchFilterEl = document.querySelector("#search-filter");
 const roadFilterEl = document.querySelector("#road-filter");
 const statusFilterEl = document.querySelector("#status-filter");
+const resetFiltersEl = document.querySelector("#reset-filters");
 const eventListEl = document.querySelector("#event-list");
+const visibleCountEl = document.querySelector("#visible-count");
+const currentCountEl = document.querySelector("#current-count");
+const futureCountEl = document.querySelector("#future-count");
 const dataURL = new URLSearchParams(window.location.search).get("data") || "data/real-roadworks.geojson";
 
 const colors = {
@@ -11,6 +16,8 @@ const colors = {
   AbnormalTraffic: "#7c3aed",
   ReroutingManagement: "#2563eb"
 };
+
+const collator = new Intl.Collator("de", { numeric: true, sensitivity: "base" });
 
 // GitHub Pages serves this checked-in excerpt directly. Keeping it static
 // avoids exposing credentials or mirroring large upstream traffic feeds.
@@ -42,6 +49,7 @@ const map = new maplibregl.Map({
 map.addControl(new maplibregl.NavigationControl(), "top-right");
 
 let events = null;
+let activeFeatureID = "";
 
 map.on("load", async () => {
   try {
@@ -92,7 +100,7 @@ map.on("load", async () => {
 });
 
 function setupFilter(data) {
-  const roads = [...new Set(data.features.map((feature) => feature.properties.road).filter(Boolean))].sort();
+  const roads = [...new Set(data.features.map((feature) => feature.properties.road).filter(Boolean))].sort(collator.compare);
   for (const road of roads) {
     const option = document.createElement("option");
     option.value = road;
@@ -100,14 +108,17 @@ function setupFilter(data) {
     roadFilterEl.appendChild(option);
   }
 
+  searchFilterEl.addEventListener("input", updateView);
   roadFilterEl.addEventListener("change", updateView);
   statusFilterEl.addEventListener("change", updateView);
+  resetFiltersEl.addEventListener("click", resetFilters);
 }
 
 function updateView() {
   const filtered = filteredEvents();
   map.getSource("events").setData(filtered);
   renderList(filtered);
+  updateSummary(filtered);
   fitToData(filtered);
 
   const date = events.features[0]?.properties.fetchedAt;
@@ -118,14 +129,17 @@ function updateView() {
 function filteredEvents() {
   // Filtering stays client-side so the published demo remains plain static
   // files under /examples/maplibre/.
+  const query = normalizeSearch(searchFilterEl.value);
   const road = roadFilterEl.value;
   const status = statusFilterEl.value;
   return {
     type: "FeatureCollection",
     features: events.features.filter((feature) => {
       const properties = feature.properties;
-      return (!road || properties.road === road) && (!status || properties.status === status);
-    })
+      return (!query || searchableText(properties).includes(query)) &&
+        (!road || properties.road === road) &&
+        (!status || properties.status === status);
+    }).sort(compareFeatures)
   };
 }
 
@@ -144,17 +158,44 @@ function renderList(data) {
     const button = document.createElement("button");
     button.className = "event-button";
     button.type = "button";
+    button.dataset.featureId = feature.properties.id || "";
+    button.setAttribute("aria-pressed", String(button.dataset.featureId === activeFeatureID));
     button.innerHTML = `
-      <span class="badge">${escapeHtml(feature.properties.road || feature.properties.type || "Meldung")} · ${statusLabel(feature.properties.status)}</span>
+      <span class="event-topline">
+        <span class="badge">${escapeHtml(feature.properties.road || feature.properties.type || "Meldung")} · ${statusLabel(feature.properties.status)}</span>
+        <span class="event-start">${formatDate(feature.properties.start)}</span>
+      </span>
       <span class="event-title">${escapeHtml(feature.properties.title || "Ohne Titel")}</span>
       <span class="event-meta">${escapeHtml(feature.properties.subtitle || feature.properties.start || "")}</span>
     `;
     button.addEventListener("click", () => {
+      activeFeatureID = button.dataset.featureId;
+      markActiveListItem();
       fitToData({ type: "FeatureCollection", features: [feature] });
       showPopup(feature);
     });
     item.appendChild(button);
     eventListEl.appendChild(item);
+  }
+}
+
+function updateSummary(data) {
+  visibleCountEl.textContent = String(data.features.length);
+  currentCountEl.textContent = String(data.features.filter((feature) => feature.properties.status === "current").length);
+  futureCountEl.textContent = String(data.features.filter((feature) => feature.properties.status === "future").length);
+}
+
+function resetFilters() {
+  searchFilterEl.value = "";
+  roadFilterEl.value = "";
+  statusFilterEl.value = "";
+  activeFeatureID = "";
+  updateView();
+}
+
+function markActiveListItem() {
+  for (const button of eventListEl.querySelectorAll(".event-button")) {
+    button.setAttribute("aria-pressed", String(button.dataset.featureId === activeFeatureID));
   }
 }
 
@@ -176,6 +217,8 @@ function bindPopups() {
 
 function showPopup(feature, lngLat) {
   const properties = feature.properties;
+  activeFeatureID = properties.id || activeFeatureID;
+  markActiveListItem();
   // List clicks do not have a cursor position, so use the middle coordinate
   // of a line feature as a stable popup anchor.
   const anchor = lngLat || popupAnchor(feature);
@@ -190,7 +233,7 @@ function showPopup(feature, lngLat) {
       <p class="popup-meta">
         ${escapeHtml(properties.subtitle || properties.type || "")}<br>
         Status: ${statusLabel(properties.status)}<br>
-        Start: ${escapeHtml(properties.start || "-")}${source}
+        Start: ${escapeHtml(formatDate(properties.start))}${source}
       </p>
     `)
     .addTo(map);
@@ -256,6 +299,16 @@ function colorExpression() {
   return expression;
 }
 
+function compareFeatures(left, right) {
+  return collator.compare(left.properties.road || "", right.properties.road || "") ||
+    statusRank(left.properties.status) - statusRank(right.properties.status) ||
+    collator.compare(left.properties.title || "", right.properties.title || "");
+}
+
+function statusRank(status) {
+  return status === "current" ? 0 : 1;
+}
+
 function statusLabel(status) {
   if (status === "future") {
     return "geplant";
@@ -264,6 +317,40 @@ function statusLabel(status) {
     return "aktuell";
   }
   return "Demo";
+}
+
+function searchableText(properties) {
+  return normalizeSearch([
+    properties.road,
+    properties.title,
+    properties.subtitle,
+    properties.description,
+    properties.type,
+    properties.status
+  ].join(" "));
+}
+
+function normalizeSearch(value) {
+  return String(value)
+    .toLocaleLowerCase("de")
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .trim();
+}
+
+function formatDate(value) {
+  if (!value) {
+    return "-";
+  }
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return value;
+  }
+  return new Intl.DateTimeFormat("de-DE", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "2-digit"
+  }).format(date);
 }
 
 function escapeHtml(value) {
