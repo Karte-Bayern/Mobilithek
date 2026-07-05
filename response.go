@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+// Response contains the fetched URL, HTTP metadata, and decoded body.
 type Response struct {
 	URL        string
 	StatusCode int
@@ -15,10 +16,12 @@ type Response struct {
 	Body       []byte
 }
 
+// OK reports whether the response status code is in the 2xx range.
 func (r *Response) OK() bool {
 	return r != nil && r.StatusCode >= 200 && r.StatusCode < 300
 }
 
+// ContentType returns the parsed media type without parameters.
 func (r *Response) ContentType() string {
 	if r == nil {
 		return ""
@@ -31,6 +34,7 @@ func (r *Response) ContentType() string {
 	return mediaType
 }
 
+// ETag returns the response ETag header.
 func (r *Response) ETag() string {
 	if r == nil {
 		return ""
@@ -38,6 +42,7 @@ func (r *Response) ETag() string {
 	return strings.TrimSpace(r.Header.Get("ETag"))
 }
 
+// LastModified returns the Last-Modified header as sent by the server.
 func (r *Response) LastModified() string {
 	if r == nil {
 		return ""
@@ -45,6 +50,7 @@ func (r *Response) LastModified() string {
 	return strings.TrimSpace(r.Header.Get("Last-Modified"))
 }
 
+// LastModifiedTime parses Last-Modified using HTTP-date rules.
 func (r *Response) LastModifiedTime() (time.Time, bool) {
 	lastModified := r.LastModified()
 	if lastModified == "" {
@@ -57,6 +63,7 @@ func (r *Response) LastModifiedTime() (time.Time, bool) {
 	return parsed, true
 }
 
+// StatusError reports a non-successful HTTP status and a short body excerpt.
 type StatusError struct {
 	URL        string
 	StatusCode int

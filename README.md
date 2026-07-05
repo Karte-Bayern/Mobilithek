@@ -149,11 +149,15 @@ The MapLibre example is the GitHub Pages demo served at:
 https://karte-bayern.github.io/Mobilithek/examples/maplibre/
 ```
 
-By default it loads a small curated excerpt of real roadworks from the public Autobahn-App API:
+By default it loads a curated excerpt of 42 real roadworks from the public Autobahn-App API:
 
 - [examples/maplibre/data/real-roadworks.geojson](examples/maplibre/data/real-roadworks.geojson)
 
-The GeoJSON file intentionally contains only a few simplified features instead of a full live export. Each feature keeps its source URL and `fetchedAt` date.
+The GeoJSON file intentionally contains simplified features instead of a full live export. Each feature keeps its source URL and `fetchedAt` date. Refresh it with:
+
+```bash
+make real-sample
+```
 
 ```bash
 go run ./examples/maplibre
@@ -202,6 +206,7 @@ Generated GeoJSON follows the RFC 7946 coordinate order (`longitude, latitude`) 
 ├── examples/data/             Synthetic XML fixture for converter testing
 ├── examples/fetch_subscription/
 ├── examples/maplibre/         Browser demo and GitHub Pages entry point
+├── examples/maplibre/data/    Small static demo data and data generator
 ├── client.go                  HTTP and TLS client
 ├── datex.go                   Generic DATEX II event extraction
 ├── endpoints.go               Mobilithek endpoint URL helpers

@@ -2,7 +2,7 @@
 
 This browser example demonstrates how a frontend can consume a prepared GeoJSON event file.
 
-It uses a small static excerpt of real roadworks from `data/real-roadworks.geojson` by default. That makes the GitHub Pages demo useful without publishing a full upstream export or requiring Mobilithek credentials.
+It uses a static excerpt of 42 real roadworks from `data/real-roadworks.geojson` by default. That makes the GitHub Pages demo useful without publishing a full upstream export or requiring Mobilithek credentials.
 
 ## Run
 
@@ -40,5 +40,6 @@ go run ./cmd/mobilithek-geojson \
 
 - The example loads MapLibre GL JS from a CDN.
 - `data/real-roadworks.geojson` is intentionally small, static, and simplified for GitHub Pages.
+- Refresh the real excerpt with `make real-sample` from the repository root.
 - `data/sample-events.geojson` remains available as a synthetic fixture.
 - This demo does not require Mobilithek credentials.

@@ -25,8 +25,10 @@ out/
 !examples/maplibre/data/sample-events.geojson
 !examples/maplibre/data/real-roadworks.geojson
 !examples/maplibre/data/README.md
+!examples/maplibre/data/build-real-roadworks.mjs
 
 # Build output.
 bin/
 dist/
 coverage.out
+build-real-roadworks.mjs

@@ -1,24 +1,1605 @@
 {
   "type": "FeatureCollection",
   "name": "real-roadworks-excerpt",
-  "bbox": [10.973917, 48.034681, 11.674856, 50.029807],
+  "bbox": [
+    8.858129,
+    47.76982,
+    12.975503,
+    50.712644
+  ],
   "features": [
     {
       "type": "Feature",
-      "bbox": [10.973917, 48.256208, 11.30311, 48.401451],
+      "bbox": [
+        11.250901,
+        49.417606,
+        11.282228,
+        49.455965
+      ],
       "geometry": {
         "type": "LineString",
-        "coordinates": [[10.973917, 48.401451], [11.016576, 48.399211], [11.033715, 48.395898], [11.06173, 48.395047], [11.089686, 48.378225], [11.120826, 48.364282], [11.139737, 48.347801], [11.164486, 48.331713], [11.202358, 48.311105], [11.231978, 48.29471], [11.277656, 48.277056], [11.30311, 48.256208]]
+        "coordinates": [
+          [
+            11.282228,
+            49.417606
+          ],
+          [
+            11.279287,
+            49.420853
+          ],
+          [
+            11.275779,
+            49.425466
+          ],
+          [
+            11.273416,
+            49.429193
+          ],
+          [
+            11.271446,
+            49.433018
+          ],
+          [
+            11.269669,
+            49.43746
+          ],
+          [
+            11.268928,
+            49.439731
+          ],
+          [
+            11.267163,
+            49.445
+          ],
+          [
+            11.26519,
+            49.447982
+          ],
+          [
+            11.261667,
+            49.451075
+          ],
+          [
+            11.25808,
+            49.453062
+          ],
+          [
+            11.250901,
+            49.455965
+          ]
+        ]
       },
       "properties": {
-        "id": "2026-034275--vi-bs.2026-07-06_07-00-00-000.devi-zus.2026-07-06_07-00-00-000_006.de3",
+        "id": "2025-049993--vi-bs.2026-05-08_00-00-00-000.devi-zus.2026-04-13_00-00-00-000_006.de3",
+        "road": "A3",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A3 | Altdorf - Nürnberg",
+        "subtitle": "Passau -> Nürnberg",
+        "start": "2026-05-08T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 08.05.26 um 00:00 Uhr Ende: 17.08.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 12.12.26) A3: Passau -> Nürnberg, zwischen 1.9 km hinter AK Altdorf und 0.6 km vor AK Nürnberg Länge: 5 km | Maximale Durchfahrtsbreite: 3.5 m A3 Erneuerung an der Decke D404R",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A3/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        10.116017,
+        49.56094,
+        10.961248,
+        49.785499
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.116017,
+            49.784388
+          ],
+          [
+            10.218214,
+            49.780974
+          ],
+          [
+            10.309152,
+            49.775874
+          ],
+          [
+            10.424415,
+            49.785499
+          ],
+          [
+            10.509643,
+            49.765586
+          ],
+          [
+            10.623044,
+            49.747908
+          ],
+          [
+            10.695408,
+            49.731315
+          ],
+          [
+            10.788596,
+            49.738194
+          ],
+          [
+            10.846251,
+            49.710517
+          ],
+          [
+            10.899282,
+            49.652354
+          ],
+          [
+            10.926866,
+            49.596788
+          ],
+          [
+            10.961248,
+            49.56094
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2026-034000--vi-bs.2026-07-06_07-30-00-000.devi-zus.2026-07-06_07-30-00-000_001.de1",
+        "road": "A3",
+        "type": "SHORT_TERM_ROADWORKS",
+        "status": "future",
+        "title": "A3 | Biebelried - Fürth/Erlangen",
+        "subtitle": "Würzburg -> Nürnberg",
+        "start": "",
+        "description": "Die Baustelle ist zu folgenden Zeiträumen gültig: 06.07.26 von 07:30 bis 15:30 Uhr A3: Würzburg -> Nürnberg, zwischen 1.8 km hinter AK Biebelried und 2.2 km vor AK Fürth/Erlangen Länge: 75.67 km | Maximale Durchfahrtsbreite: 7 m A3 von Biebelried (AK) nach FürthErlangen (AK) Beseitigung Unfallfolgen",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A3/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        12.960114,
+        48.806413,
+        12.975503,
+        48.812986
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.960114,
+            48.812986
+          ],
+          [
+            12.960944,
+            48.812728
+          ],
+          [
+            12.963014,
+            48.812013
+          ],
+          [
+            12.963971,
+            48.81165
+          ],
+          [
+            12.965765,
+            48.810912
+          ],
+          [
+            12.965885,
+            48.810864
+          ],
+          [
+            12.967746,
+            48.810039
+          ],
+          [
+            12.969921,
+            48.809044
+          ],
+          [
+            12.973985,
+            48.807157
+          ],
+          [
+            12.975047,
+            48.806653
+          ],
+          [
+            12.975503,
+            48.806413
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2025-022818--vi-bs.2026-06-30_00-00-00-000.devi-zus.2026-06-01_00-00-00-000.de1",
+        "road": "A3",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A3 | Deggendorf - Isarblick",
+        "subtitle": "Nürnberg -> Passau",
+        "start": "2026-06-30T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 30.06.26 um 00:00 Uhr Ende: 17.10.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 09.07.27) A3: Nürnberg -> Passau, zwischen 1.6 km hinter AK Deggendorf und 0.3 km vor Isarblick Länge: 1.35 km | Maximale Durchfahrtsbreite: 5.1 m A3 Brückeninstandsetzung Donaubrücke Deggenau",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A3/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        10.846464,
+        49.309591,
+        10.907687,
+        49.316032
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.846464,
+            49.314798
+          ],
+          [
+            10.852151,
+            49.31543
+          ],
+          [
+            10.86001,
+            49.315892
+          ],
+          [
+            10.867697,
+            49.316032
+          ],
+          [
+            10.873475,
+            49.315942
+          ],
+          [
+            10.880196,
+            49.315658
+          ],
+          [
+            10.886476,
+            49.315098
+          ],
+          [
+            10.891888,
+            49.314305
+          ],
+          [
+            10.895854,
+            49.313478
+          ],
+          [
+            10.899714,
+            49.312456
+          ],
+          [
+            10.903696,
+            49.311168
+          ],
+          [
+            10.907687,
+            49.309591
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2025-050027--vi-bs.2026-04-20_00-00-00-000.devi-zus.2026-04-20_00-00-00-000_001.de1",
+        "road": "A6",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A6 | Auergründel - Dechenwald",
+        "subtitle": "Heilbronn -> Nürnberg",
+        "start": "2026-04-20T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 20.04.26 um 00:00 Uhr Ende: 05.12.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 05.12.26) A6: Heilbronn -> Nürnberg, zwischen 1.6 km hinter Auergründel und 0.2 km vor Dechenwald Länge: 4.6 km | Maximale Durchfahrtsbreite: 6 m A6 Brückenneubau Grünbrücke",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A6/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        10.441271,
+        49.249159,
+        10.510053,
+        49.262648
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.441271,
+            49.253797
+          ],
+          [
+            10.450871,
+            49.251141
+          ],
+          [
+            10.458128,
+            49.249619
+          ],
+          [
+            10.463477,
+            49.249159
+          ],
+          [
+            10.468408,
+            49.249218
+          ],
+          [
+            10.473602,
+            49.249803
+          ],
+          [
+            10.479479,
+            49.251059
+          ],
+          [
+            10.486081,
+            49.253167
+          ],
+          [
+            10.491703,
+            49.255499
+          ],
+          [
+            10.500172,
+            49.259307
+          ],
+          [
+            10.505132,
+            49.261171
+          ],
+          [
+            10.510053,
+            49.262648
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2025-050009--vi-bs.2026-06-14_00-00-00-000.devi-zus.2026-04-13_00-00-00-000_007.de5",
+        "road": "A6",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A6 | Aurach - Silberbach",
+        "subtitle": "Heilbronn -> Nürnberg",
+        "start": "2026-06-14T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 14.06.26 um 00:00 Uhr Ende: 25.07.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 07.11.26) A6: Heilbronn -> Nürnberg, zwischen 0.2 km hinter AS Aurach und 2.9 km vor Silberbach Länge: 5.47 km | Maximale Durchfahrtsbreite: 4 m A6 Erneuerung an der Decke D727L",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A6/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        8.858129,
+        49.226802,
+        8.925476,
+        49.248401
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.925476,
+            49.226802
+          ],
+          [
+            8.918204,
+            49.227312
+          ],
+          [
+            8.912965,
+            49.227604
+          ],
+          [
+            8.908361,
+            49.228996
+          ],
+          [
+            8.905202,
+            49.231026
+          ],
+          [
+            8.900097,
+            49.235337
+          ],
+          [
+            8.895877,
+            49.237961
+          ],
+          [
+            8.891467,
+            49.240043
+          ],
+          [
+            8.885591,
+            49.242029
+          ],
+          [
+            8.877871,
+            49.243623
+          ],
+          [
+            8.869506,
+            49.244968
+          ],
+          [
+            8.858129,
+            49.248401
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2026-033069--vi-bs.2026-07-10_09-00-00-000_001.de0",
+        "road": "A6",
+        "type": "SHORT_TERM_ROADWORKS",
+        "status": "future",
+        "title": "A6 | Bauernwald - Sinsheim",
+        "subtitle": "Heilbronn -> Mannheim",
+        "start": "",
+        "description": "Die Baustelle ist zu folgenden Zeiträumen gültig: 10.07.26 von 09:00 bis 12:00 Uhr A6: Heilbronn -> Mannheim, zwischen 3.6 km hinter Bauernwald und 0.1 km vor AS Sinsheim Länge: 5.65 km | Max. 80 km/h | Maximale Durchfahrtsbreite: 6.5 m A6 von Bauernwald (Rastplatz) nach Sinsheim (AS) Bauwerksarbeiten",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A6/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        10.246299,
+        47.874667,
+        10.250091,
+        47.883548
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.250091,
+            47.874667
+          ],
+          [
+            10.249796,
+            47.874983
+          ],
+          [
+            10.249137,
+            47.875764
+          ],
+          [
+            10.24891,
+            47.87608
+          ],
+          [
+            10.248753,
+            47.876286
+          ],
+          [
+            10.24756,
+            47.878382
+          ],
+          [
+            10.247218,
+            47.879237
+          ],
+          [
+            10.246691,
+            47.881132
+          ],
+          [
+            10.246564,
+            47.881741
+          ],
+          [
+            10.246432,
+            47.882704
+          ],
+          [
+            10.246313,
+            47.883425
+          ],
+          [
+            10.246299,
+            47.883548
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2026-018507--vi-bs.2026-04-27_00-00-00-000.devi-zus.2026-04-27_00-00-00-000_004.de7",
+        "road": "A7",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A7 | Allgäuer Tor - Bad Grönenbach",
+        "subtitle": "Füssen/Reutte -> Ulm",
+        "start": "2026-04-27T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 27.04.26 um 00:00 Uhr Ende: 08.08.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 08.08.26) A7: Füssen/Reutte -> Ulm, zwischen 4.0 km hinter Allgäuer Tor und AS Bad Grönenbach Länge: 1.04 km | Maximale Durchfahrtsbreite: 8.5 m A7 Hinweisbeschilderung Bad Grönebach_MN19",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A7/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        9.731136,
+        50.398236,
+        9.738794,
+        50.42359
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.731321,
+            50.398236
+          ],
+          [
+            9.731157,
+            50.400195
+          ],
+          [
+            9.731136,
+            50.401696
+          ],
+          [
+            9.731174,
+            50.403165
+          ],
+          [
+            9.731249,
+            50.404152
+          ],
+          [
+            9.73176,
+            50.407561
+          ],
+          [
+            9.73229,
+            50.409798
+          ],
+          [
+            9.733342,
+            50.413124
+          ],
+          [
+            9.733911,
+            50.414651
+          ],
+          [
+            9.735878,
+            50.418814
+          ],
+          [
+            9.737049,
+            50.420883
+          ],
+          [
+            9.738794,
+            50.42359
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2024-018478--vi-bs.2025-02-24_17-15-00-000.devi-zus.2024-09-01_00-00-00-000_002.f.de7",
+        "road": "A7",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A7 | Am Forsthaus - Lohmühle",
+        "subtitle": "Würzburg -> Fulda",
+        "start": "2025-02-24T17:15:00+01:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 24.02.25 um 17:15 Uhr Ende: 29.04.27 um 00:00 Uhr (Ende der Gesamtmaßnahme: 18.04.30) A7: Würzburg -> Fulda, zwischen 1.6 km hinter Am Forsthaus und 1.5 km vor Lohmühle Länge: 2.9 km | Max. 80 km/h | Maximale Durchfahrtsbreite: 5.35 m A7 Brückenneubau - TB Uttrichshausen",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A7/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        10.122521,
+        48.16744,
+        10.132096,
+        48.221941
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.132096,
+            48.16744
+          ],
+          [
+            10.13186,
+            48.169616
+          ],
+          [
+            10.130898,
+            48.172462
+          ],
+          [
+            10.127343,
+            48.180866
+          ],
+          [
+            10.126677,
+            48.183834
+          ],
+          [
+            10.12302,
+            48.196795
+          ],
+          [
+            10.122521,
+            48.200871
+          ],
+          [
+            10.122545,
+            48.203137
+          ],
+          [
+            10.123204,
+            48.207877
+          ],
+          [
+            10.125511,
+            48.219045
+          ],
+          [
+            10.125637,
+            48.220525
+          ],
+          [
+            10.125685,
+            48.221941
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2025-046769--vi-fbm.2026-07-20_00-00-00-000.devi-zus.2026-04-13_00-00-00-000_002.de3",
+        "road": "A7",
+        "type": "ROADWORKS",
+        "status": "future",
+        "title": "A7 | Badhauser Wald-West - Tannengarten",
+        "subtitle": "Füssen/Reutte -> Ulm",
+        "start": "2026-07-20T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 20.07.26 um 00:00 Uhr Ende: 27.07.26 um 07:00 Uhr (Ende der Gesamtmaßnahme: 11.10.26) A7: Füssen/Reutte -> Ulm, zwischen 0.9 km hinter Badhauser Wald-West und 2.1 km vor Tannengarten Länge: 6.15 km | Maximale Durchfahrtsbreite: 3.25 m A7 D.10KE.112 E Vöhringen-Dettingen FR12 BAB7 BA 2 FR 1",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A7/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        10.869178,
+        49.919638,
+        10.896392,
+        49.922576
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.896392,
+            49.922576
+          ],
+          [
+            10.894805,
+            49.922424
+          ],
+          [
+            10.890915,
+            49.922327
+          ],
+          [
+            10.886686,
+            49.922288
+          ],
+          [
+            10.884181,
+            49.922176
+          ],
+          [
+            10.882019,
+            49.922012
+          ],
+          [
+            10.880777,
+            49.921885
+          ],
+          [
+            10.879167,
+            49.921691
+          ],
+          [
+            10.877345,
+            49.921414
+          ],
+          [
+            10.875503,
+            49.921098
+          ],
+          [
+            10.872747,
+            49.920511
+          ],
+          [
+            10.869178,
+            49.919638
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2023-000436--vi-bs.2025-08-23_00-00-00-000.devi-zus.2023-10-10_00-00-00-000.f_001.de18",
+        "road": "A70",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A70 | Bamberg - Bamberg-Hafen",
+        "subtitle": "Bamberg -> Schweinfurt/Werneck",
+        "start": "2025-08-23T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 23.08.25 um 00:00 Uhr Ende: 01.01.28 um 00:00 Uhr (Ende der Gesamtmaßnahme: 01.01.28) A70: Bamberg -> Schweinfurt/Werneck, zwischen 0.2 km hinter AS Bamberg und 0.7 km vor AS Bamberg-Hafen Länge: 2 km | Max. 80 km/h | Maximale Durchfahrtsbreite: 3.5 m A70 Brückenneubau",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A70/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        10.869242,
+        49.919528,
+        10.89642,
+        49.922477
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.869242,
+            49.919528
+          ],
+          [
+            10.873125,
+            49.920475
+          ],
+          [
+            10.87543,
+            49.920977
+          ],
+          [
+            10.876082,
+            49.921096
+          ],
+          [
+            10.878036,
+            49.921427
+          ],
+          [
+            10.88081,
+            49.92179
+          ],
+          [
+            10.883276,
+            49.922008
+          ],
+          [
+            10.885589,
+            49.92215
+          ],
+          [
+            10.888968,
+            49.922222
+          ],
+          [
+            10.892868,
+            49.922242
+          ],
+          [
+            10.894833,
+            49.922327
+          ],
+          [
+            10.89642,
+            49.922477
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2023-000436--vi-bs.2025-08-23_00-00-00-000.devi-zus.2023-10-10_00-00-00-000.f_001.de16",
+        "road": "A70",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A70 | Bamberg-Hafen - Bamberg",
+        "subtitle": "Schweinfurt/Werneck -> Bamberg",
+        "start": "2025-08-23T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 23.08.25 um 00:00 Uhr Ende: 01.01.28 um 00:00 Uhr (Ende der Gesamtmaßnahme: 01.01.28) A70: Schweinfurt/Werneck -> Bamberg, zwischen 0.7 km hinter AS Bamberg-Hafen und 0.2 km vor AS Bamberg Länge: 2 km | Max. 80 km/h | Maximale Durchfahrtsbreite: 5.5 m A70 Brückenneubau",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A70/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        10.846025,
+        49.917509,
+        10.852961,
+        49.917866
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.852961,
+            49.917509
+          ],
+          [
+            10.851995,
+            49.917513
+          ],
+          [
+            10.850628,
+            49.917543
+          ],
+          [
+            10.84949,
+            49.917596
+          ],
+          [
+            10.847385,
+            49.917733
+          ],
+          [
+            10.846025,
+            49.917866
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2026-033969--vi-bs.2026-07-16_20-00-00-000_001.de0",
+        "road": "A70",
+        "type": "SHORT_TERM_ROADWORKS",
+        "status": "future",
+        "title": "A70 | Bamberg-Hafen - Viereth-Trunstadt",
+        "subtitle": "Bamberg -> Schweinfurt/Werneck",
+        "start": "",
+        "description": "Die Baustelle ist zu folgenden Zeiträumen gültig: 16.07.26 20:00 bis zum 17.07.26 05:00 Uhr. A70: Bamberg -> Schweinfurt/Werneck, zwischen 0.5 km hinter AS Bamberg-Hafen und 5.0 km vor AS Viereth-Trunstadt Länge: 0.5 km | Maximale Durchfahrtsbreite: 4 m A70 von Bamberg-Hafen (AS) nach Viereth-Trunstadt (AS) Sonstiges",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A70/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        10.689058,
+        50.669558,
+        10.777059,
+        50.712644
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.777059,
+            50.712644
+          ],
+          [
+            10.773706,
+            50.711642
+          ],
+          [
+            10.761282,
+            50.706837
+          ],
+          [
+            10.745427,
+            50.699962
+          ],
+          [
+            10.732614,
+            50.694207
+          ],
+          [
+            10.719136,
+            50.685796
+          ],
+          [
+            10.714551,
+            50.683291
+          ],
+          [
+            10.703329,
+            50.678916
+          ],
+          [
+            10.695598,
+            50.676104
+          ],
+          [
+            10.692154,
+            50.674007
+          ],
+          [
+            10.690002,
+            50.671579
+          ],
+          [
+            10.689058,
+            50.669558
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2026-021988--vi-bs.2026-07-06_19-00-00-000.devi-bs.2026-07-07_19-00-00-000.de1",
+        "road": "A71",
+        "type": "SHORT_TERM_ROADWORKS",
+        "status": "future",
+        "title": "A71 | Alte Burg - Oberhof",
+        "subtitle": "Erfurt -> Suhl",
+        "start": "",
+        "description": "Die Baustelle ist zu folgenden Zeiträumen gültig: Jeden Montag, Dienstag, Mittwoch und Donnerstag zwischen dem 06.07.26 und dem 10.07.26 von 19:00 bis 00:00 Uhr. Jeden Dienstag, Mittwoch, Donnerstag und Freitag zwischen dem 07.07.26 und dem 10.07.26 von 00:00 bis 06:00 Uhr. A71: Erfurt -> Suhl, zwischen 2.0 km hinter Alte Burg und 0.3 km vor AS Oberhof Länge: 7.95 km | Maximale Durchfahrtsbreite: 3.25 m A71 Wartungsarbeiten Tunnel Rennsteig KW 28",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A71/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        10.308238,
+        50.340788,
+        10.317441,
+        50.392934
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.308238,
+            50.340788
+          ],
+          [
+            10.312366,
+            50.344434
+          ],
+          [
+            10.314923,
+            50.348029
+          ],
+          [
+            10.317193,
+            50.355514
+          ],
+          [
+            10.317441,
+            50.360711
+          ],
+          [
+            10.316548,
+            50.366586
+          ],
+          [
+            10.315093,
+            50.37111
+          ],
+          [
+            10.313027,
+            50.377458
+          ],
+          [
+            10.31253,
+            50.381154
+          ],
+          [
+            10.312665,
+            50.385041
+          ],
+          [
+            10.313526,
+            50.389036
+          ],
+          [
+            10.315103,
+            50.392934
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2025-050303--vi-bs.2026-05-04_00-00-00-000.devi-zus.2026-05-04_00-00-00-000_002.de1",
+        "road": "A71",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A71 | Bad Neustadt a.d.Saale - Mellrichstadt",
+        "subtitle": "Schweinfurt -> Suhl",
+        "start": "2026-05-04T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 04.05.26 um 00:00 Uhr Ende: 11.07.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 11.07.26) A71: Schweinfurt -> Suhl, zwischen 1.6 km hinter AS Bad Neustadt a.d.Saale und 2.5 km vor AS Mellrichstadt Länge: 6 km | Maximale Durchfahrtsbreite: 4.2 m A71 Erneuerung an der Decke Fu172",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A71/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        10.485127,
+        50.581774,
+        10.513618,
+        50.59813
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.513618,
+            50.597996
+          ],
+          [
+            10.511435,
+            50.59813
+          ],
+          [
+            10.505514,
+            50.59787
+          ],
+          [
+            10.499765,
+            50.596517
+          ],
+          [
+            10.497477,
+            50.595598
+          ],
+          [
+            10.494783,
+            50.594127
+          ],
+          [
+            10.492778,
+            50.592529
+          ],
+          [
+            10.491501,
+            50.591027
+          ],
+          [
+            10.490666,
+            50.589574
+          ],
+          [
+            10.489649,
+            50.58708
+          ],
+          [
+            10.487923,
+            50.584581
+          ],
+          [
+            10.485127,
+            50.581774
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2023-002185--vi-bs.2024-01-01_00-00-00-000.devi-zus.2022-01-01_00-00-00-000.de1",
+        "road": "A71",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A71 | Dolmar - Meiningen-Nord",
+        "subtitle": "Suhl -> Schweinfurt",
+        "start": "2024-01-01T00:00:00+01:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 01.01.24 um 00:00 Uhr Ende: 08.12.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 08.12.26) A71: Suhl -> Schweinfurt, zwischen 1.4 km hinter Dolmar und 0.5 km vor AS Meiningen-Nord Länge: 3.01 km | Maximale Durchfahrtsbreite: 7 m 71 ZM_2023-002185_bRF_km 139,5-145,0_Akute Verkehrsgefährdung aufgrund Steinschlag",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A71/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        12.018163,
+        50.403048,
+        12.02386,
+        50.405673
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.018163,
+            50.403048
+          ],
+          [
+            12.018387,
+            50.403169
+          ],
+          [
+            12.019144,
+            50.403563
+          ],
+          [
+            12.020164,
+            50.404027
+          ],
+          [
+            12.022653,
+            50.405119
+          ],
+          [
+            12.022872,
+            50.405216
+          ],
+          [
+            12.02386,
+            50.405673
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2025-048722--vi-bs.2026-04-13_00-00-00-000_001.de0",
+        "road": "A72",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A72 | Landesgrenze - Großzöbern",
+        "subtitle": "Hof -> Plauen",
+        "start": "2026-05-07T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 07.05.26 um 00:00 Uhr Ende: 19.12.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 19.12.26) A72: Hof -> Plauen, zwischen 3.2 km hinter Landesgrenze und 0.7 km vor Großzöbern Länge: 0.5 km | Max. 100 km/h | Maximale Durchfahrtsbreite: 6.5 m A72 Entwässerungsarbeiten",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A72/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        12.271295,
+        50.54861,
+        12.284468,
+        50.563305
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.271295,
+            50.54861
+          ],
+          [
+            12.272441,
+            50.549551
+          ],
+          [
+            12.276146,
+            50.552603
+          ],
+          [
+            12.277468,
+            50.553679
+          ],
+          [
+            12.279237,
+            50.555137
+          ],
+          [
+            12.280141,
+            50.555901
+          ],
+          [
+            12.281094,
+            50.556812
+          ],
+          [
+            12.281974,
+            50.557807
+          ],
+          [
+            12.283166,
+            50.559563
+          ],
+          [
+            12.283567,
+            50.560344
+          ],
+          [
+            12.284297,
+            50.562426
+          ],
+          [
+            12.284468,
+            50.563305
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2025-048723--vi-zus.2026-04-13_00-00-00-000_003.de0",
+        "road": "A72",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A72 | Neuensalz - Reichenbach",
+        "subtitle": "Plauen -> Zwickau",
+        "start": "2026-05-18T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 18.05.26 um 00:00 Uhr Ende: 22.08.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 22.08.26) A72: Plauen -> Zwickau, zwischen 6.0 km hinter Neuensalz und 5.4 km vor AS Reichenbach Länge: 1.91 km | Max. 80 km/h | Maximale Durchfahrtsbreite: 6 m A72 Schallschutzarbeiten",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A72/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        12.490756,
+        50.650075,
+        12.504941,
+        50.657209
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.490756,
+            50.650075
+          ],
+          [
+            12.492767,
+            50.650525
+          ],
+          [
+            12.493176,
+            50.650618
+          ],
+          [
+            12.49365,
+            50.65074
+          ],
+          [
+            12.49502,
+            50.651177
+          ],
+          [
+            12.496054,
+            50.651569
+          ],
+          [
+            12.496947,
+            50.651954
+          ],
+          [
+            12.499222,
+            50.653227
+          ],
+          [
+            12.501688,
+            50.654948
+          ],
+          [
+            12.503937,
+            50.656509
+          ],
+          [
+            12.504421,
+            50.656845
+          ],
+          [
+            12.504941,
+            50.657209
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2026-034089--vi-bs.2026-07-06_07-00-00-000_009.de0",
+        "road": "A72",
+        "type": "SHORT_TERM_ROADWORKS",
+        "status": "future",
+        "title": "A72 | Niedercrinitz - Zwickau-Ost",
+        "subtitle": "Plauen -> Zwickau",
+        "start": "",
+        "description": "Die Baustelle ist zu folgenden Zeiträumen gültig: 06.07.26 07:00 bis zum 07.07.26 14:00 Uhr. A72: Plauen -> Zwickau, zwischen 0.2 km hinter Niedercrinitz und 6.5 km vor AS Zwickau-Ost Länge: 1.3 km | Max. 60 km/h | Maximale Durchfahrtsbreite: 3.25 m A72 von Niedercrinitz (Rastplatz) nach Zwickau-Ost (AS) Fahrbahninstandsetzung",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A72/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        10.972928,
+        49.858137,
+        10.974046,
+        49.858673
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.972928,
+            49.858673
+          ],
+          [
+            10.974046,
+            49.858137
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2025-048780--vi-bs.2026-04-01_00-00-00-000.devi-zus.2026-04-01_00-00-00-000_004.de1",
+        "road": "A73",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A73 | Bamberg-Süd - Hirschaid",
+        "subtitle": "Bamberg -> Nürnberg",
+        "start": "2026-04-01T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 01.04.26 um 00:00 Uhr Ende: 29.11.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 29.11.26) A73: Bamberg -> Nürnberg, zwischen 2.1 km hinter AS Bamberg-Süd und 4.7 km vor AS Hirschaid Länge: 0.1 km | Maximale Durchfahrtsbreite: 6.25 m A73 Bauwerksarbeiten Bw 106a",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A73/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        10.929334,
+        50.332733,
+        10.938083,
+        50.341914
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.938083,
+            50.332733
+          ],
+          [
+            10.937669,
+            50.333432
+          ],
+          [
+            10.937004,
+            50.334483
+          ],
+          [
+            10.936493,
+            50.335216
+          ],
+          [
+            10.93529,
+            50.336742
+          ],
+          [
+            10.934766,
+            50.337322
+          ],
+          [
+            10.933385,
+            50.338736
+          ],
+          [
+            10.933121,
+            50.338973
+          ],
+          [
+            10.932339,
+            50.339664
+          ],
+          [
+            10.931737,
+            50.340162
+          ],
+          [
+            10.929708,
+            50.341668
+          ],
+          [
+            10.929334,
+            50.341914
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2025-048768--vi-bs.2026-04-21_00-00-00-000.devi-zus.2026-04-08_00-00-00-000.de3",
+        "road": "A73",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A73 | Coburg - Eisfeld-Süd",
+        "subtitle": "Bamberg -> Suhl",
+        "start": "2026-04-21T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 21.04.26 um 00:00 Uhr Ende: 16.12.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 16.12.26) A73: Bamberg -> Suhl, zwischen 6.1 km hinter AS Coburg und 5.7 km vor AS Eisfeld-Süd Länge: 1.2 km | Maximale Durchfahrtsbreite: 6.1 m A73 Arbeiten an Parkplätzen",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A73/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        11.075022,
+        49.396025,
+        11.079852,
+        49.39949
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.075022,
+            49.39949
+          ],
+          [
+            11.075295,
+            49.399162
+          ],
+          [
+            11.075586,
+            49.398848
+          ],
+          [
+            11.0762,
+            49.398264
+          ],
+          [
+            11.076539,
+            49.397976
+          ],
+          [
+            11.07715,
+            49.39751
+          ],
+          [
+            11.077413,
+            49.397327
+          ],
+          [
+            11.077964,
+            49.396961
+          ],
+          [
+            11.078276,
+            49.396782
+          ],
+          [
+            11.078947,
+            49.396425
+          ],
+          [
+            11.079193,
+            49.396315
+          ],
+          [
+            11.079852,
+            49.396025
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2026-034168--vi-bs.2026-07-06_20-00-00-000_019.de0",
+        "road": "A73",
+        "type": "SHORT_TERM_ROADWORKS",
+        "status": "future",
+        "title": "A73 | Nürnberg-Hafen-Ost - Nürnberg-Hafen-Süd",
+        "subtitle": "Nürnberg -> Feucht",
+        "start": "",
+        "description": "Die Baustelle ist zu folgenden Zeiträumen gültig: 06.07.26 20:00 bis zum 07.07.26 02:00 Uhr. A73: Nürnberg -> Feucht, zwischen 1.0 km hinter AS Nürnberg-Hafen-Ost und 0.3 km vor AS Nürnberg-Hafen-Süd Länge: 0.52 km | Max. 80 km/h | Maximale Durchfahrtsbreite: 7.5 m A73 von Nürnberg-Hafen-Ost (AS) nach Nürnberg-Hafen-Süd (AS) Arbeiten an Verkehrszeichenbrück Fa. Bremicker    e",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A73/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        10.69704,
+        48.418651,
+        10.699741,
+        48.418835
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.699741,
+            48.418651
+          ],
+          [
+            10.698464,
+            48.418737
+          ],
+          [
+            10.697529,
+            48.418801
+          ],
+          [
+            10.69704,
+            48.418835
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2026-031314--vi-bs.2026-06-30_08-00-00-000.devi-zus.2026-06-30_08-00-00-000_003.de3",
+        "road": "A8",
+        "type": "SHORT_TERM_ROADWORKS",
+        "status": "current",
+        "title": "A8 | Adelsried - Streitheimer Forst-Nord",
+        "subtitle": "München -> Stuttgart",
+        "start": "",
+        "description": "Die Baustelle ist zu folgenden Zeiträumen gültig: Jeden Dienstag, Mittwoch, Donnerstag und Freitag zwischen dem 30.06.26 und dem 09.07.26 von 08:00 bis 18:00 Uhr. 06.07.26 von 08:00 bis 18:00 Uhr A8: München -> Stuttgart, zwischen 1.5 km hinter AS Adelsried und 3.6 km vor Streitheimer Forst-Nord Länge: 0.2 km | Maximale Durchfahrtsbreite: 9 m A8 Lärmschutzarbeiten BW 96-1 und BW 100",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A8/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        11.145599,
+        48.339489,
+        11.156301,
+        48.344927
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.145599,
+            48.344927
+          ],
+          [
+            11.146493,
+            48.344506
+          ],
+          [
+            11.147404,
+            48.344089
+          ],
+          [
+            11.151729,
+            48.342062
+          ],
+          [
+            11.152502,
+            48.341698
+          ],
+          [
+            11.153843,
+            48.341017
+          ],
+          [
+            11.154951,
+            48.340378
+          ],
+          [
+            11.155511,
+            48.340026
+          ],
+          [
+            11.156167,
+            48.339587
+          ],
+          [
+            11.156301,
+            48.339489
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2026-032564--vi-bs.2026-07-06_07-00-00-000.devi-zus.2026-06-29_07-00-00-000_006.de3",
         "road": "A8",
         "type": "SHORT_TERM_ROADWORKS",
         "status": "future",
-        "title": "A8 | Friedberg (Bayern) - Dachau/Fürstenfeldbruck",
+        "title": "A8 | Adelzhausen - Odelzhausen",
         "subtitle": "Stuttgart -> München",
         "start": "",
-        "description": "Die Baustelle ist zu folgenden Zeiträumen gültig: 06.07.26 von 11:00 bis 17:00 Uhr 07.07.26 von 11:00 bis 17:00 Uhr 08.07.26 von 11:00 bis 17:00 Uhr 09.07.26 von 11:00 bis 17:00 Uhr 10.07.26 von 11:00 bis 13:00 Uhr A8: Stuttgart -> München, zwischen 1.5 km hinter AS Friedberg (Bayern) und 4.2 km vor AS Dachau/Fürstenfeldbruck Länge: 30.61 km | Maximale Durchfahrtsbreite: 7.5 m Aplus A8 West - Sofortmaßnahmen Fahrbahnschäden (Bereich Beton)",
+        "description": "Die Baustelle ist zu folgenden Zeiträumen gültig: Jeden Montag, Dienstag, Mittwoch, Donnerstag und Freitag zwischen dem 06.07.26 und dem 10.07.26 von 07:00 bis 19:00 Uhr. A8: Stuttgart -> München, zwischen 1.2 km hinter AS Adelzhausen und 5.2 km vor AS Odelzhausen Länge: 1 km | Maximale Durchfahrtsbreite: 3 m Aplus A8 West - KW 27 u. KW 28 - Fugensanierung LKW-Stellflächen Fa. Sinani",
         "source": "Autobahn-App API",
         "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A8/services/roadworks",
         "fetchedAt": "2026-07-05"
@@ -26,62 +1607,117 @@
     },
     {
       "type": "Feature",
-      "bbox": [10.990099, 48.396858, 11.025704, 48.401211],
+      "bbox": [
+        11.160348,
+        48.318256,
+        11.19041,
+        48.335897
+      ],
       "geometry": {
         "type": "LineString",
-        "coordinates": [[10.990099, 48.401211], [10.992406, 48.401059], [10.997025, 48.400752], [11.005398, 48.400186], [11.00983, 48.399887], [11.013129, 48.399655], [11.015791, 48.399337], [11.017377, 48.399063], [11.019058, 48.398694], [11.02081, 48.398223], [11.025075, 48.397005], [11.025704, 48.396858]]
+        "coordinates": [
+          [
+            11.160348,
+            48.335897
+          ],
+          [
+            11.162496,
+            48.333635
+          ],
+          [
+            11.16322,
+            48.332861
+          ],
+          [
+            11.164486,
+            48.331713
+          ],
+          [
+            11.165891,
+            48.330632
+          ],
+          [
+            11.167752,
+            48.329365
+          ],
+          [
+            11.168785,
+            48.328721
+          ],
+          [
+            11.172656,
+            48.326613
+          ],
+          [
+            11.176535,
+            48.32473
+          ],
+          [
+            11.181104,
+            48.322577
+          ],
+          [
+            11.186066,
+            48.320307
+          ],
+          [
+            11.19041,
+            48.318256
+          ]
+        ]
       },
       "properties": {
-        "id": "2026-033925--vi-bs.2026-07-06_07-00-00-000.devi-zus.2026-07-06_07-00-00-000_005.de1",
+        "id": "2026-032678--vi-bs.2026-07-02_05-00-00-000.devi-bs.2026-07-02_19-45-00-000.de5",
         "road": "A8",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A8 | Adelzhauser Berg - Odelzhausen",
+        "subtitle": "Stuttgart -> München",
+        "start": "2026-07-02T05:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 02.07.26 um 05:00 Uhr Ende: 17.08.26 um 16:00 Uhr (Ende der Gesamtmaßnahme: 17.08.26) A8: Stuttgart -> München, zwischen 1.0 km hinter Adelzhauser Berg und 1.7 km vor AS Odelzhausen Länge: 3 km | Maximale Durchfahrtsbreite: 9.25 m Aplus A8 West - KW 27 - Fahrbahnreparatur Fa. Schulz BW 44 u. BW 47",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A8/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        11.597184,
+        48.385227,
+        11.597223,
+        48.387019
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.59721,
+            48.387019
+          ],
+          [
+            11.597223,
+            48.386369
+          ],
+          [
+            11.597194,
+            48.385322
+          ],
+          [
+            11.597184,
+            48.385227
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2026-032662--vi-bs.2026-07-16_10-00-00-000.de0",
+        "road": "A9",
         "type": "SHORT_TERM_ROADWORKS",
         "status": "future",
-        "title": "A8 | Kirchholz - Dasing",
-        "subtitle": "Stuttgart -> München",
+        "title": "A9 | Allershausen - Fürholzen (West)",
+        "subtitle": "Nürnberg -> München",
         "start": "",
-        "description": "Die Baustelle ist zu folgenden Zeiträumen gültig: 06.07.26 von 12:00 bis 17:00 Uhr 07.07.26 von 12:00 bis 17:00 Uhr 08.07.26 von 12:00 bis 17:00 Uhr A8: Stuttgart -> München, zwischen 0.5 km hinter Kirchholz und 3.1 km vor AS Dasing Länge: 2.7 km | Maximale Durchfahrtsbreite: 7.5 m Aplus A8 West - Bankettschälarbeiten - KW 28 - Sperre 1.Fs",
-        "source": "Autobahn-App API",
-        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A8/services/roadworks",
-        "fetchedAt": "2026-07-05"
-      }
-    },
-    {
-      "type": "Feature",
-      "bbox": [11.673427, 48.034681, 11.674856, 48.035632],
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [[11.674856, 48.035632], [11.674441, 48.035342], [11.673616, 48.034801], [11.673427, 48.034681]]
-      },
-      "properties": {
-        "id": "2026-032122--vi-bs.2026-06-25_00-00-00-000.devi-zus.2026-06-25_00-00-00-000.de9",
-        "road": "A8",
-        "type": "ROADWORKS",
-        "status": "current",
-        "title": "A8 | Ottobrunn - München-Süd",
-        "subtitle": "München-Nord -> München-Süd",
-        "start": "2026-06-25T00:00:00+02:00",
-        "description": "Zeitraum dieser Bauphase: Beginn: 25.06.26 um 00:00 Uhr Ende: 03.08.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 03.08.26) A99: München-Nord -> München-Süd, zwischen 0.6 km hinter AS Ottobrunn und 1.4 km vor AK München-Süd Länge: 0.15 km | Maximale Durchfahrtsbreite: 7.5 m Hinweisbeschilderung zur Sperrung Luise-Kiesselbach-Tunnel",
-        "source": "Autobahn-App API",
-        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A8/services/roadworks",
-        "fetchedAt": "2026-07-05"
-      }
-    },
-    {
-      "type": "Feature",
-      "bbox": [11.281101, 49.06337, 11.319464, 49.10871],
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [[11.319464, 49.06337], [11.313107, 49.066536], [11.30661, 49.06977], [11.297478, 49.074378], [11.295214, 49.075864], [11.29244, 49.078352], [11.290084, 49.081361], [11.288948, 49.083845], [11.287188, 49.090548], [11.283758, 49.103824], [11.283147, 49.105342], [11.281101, 49.10871]]
-      },
-      "properties": {
-        "id": "2025-050316--vi-bs.2026-04-13_00-00-00-000.devi-zus.2026-04-13_00-00-00-000_009.de3",
-        "road": "A9",
-        "type": "ROADWORKS",
-        "status": "current",
-        "title": "A9 | Greding - Offenbau",
-        "subtitle": "München -> Nürnberg",
-        "start": "2026-04-13T00:00:00+02:00",
-        "description": "Zeitraum dieser Bauphase: Beginn: 13.04.26 um 00:00 Uhr Ende: 15.08.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 15.08.26) A9: München -> Nürnberg, zwischen 1.9 km hinter Greding und 2.5 km vor Offenbau Länge: 6.1 km | Maximale Durchfahrtsbreite: 8.5 m A9 Erneuerung an der Decke D415",
+        "description": "Die Baustelle ist zu folgenden Zeiträumen gültig: 16.07.26 von 10:00 bis 18:00 Uhr 17.07.26 von 10:00 bis 14:00 Uhr A9: Nürnberg -> München, zwischen 4.8 km hinter AS Allershausen und 5.3 km vor Fürholzen (West) Länge: 0.2 km | Maximale Durchfahrtsbreite: 7.5 m A9 von Allershausen (AS) nach Fürholzen (West) (Rastplatz) Arbeiten an Verkehrszeichenbrücke",
         "source": "Autobahn-App API",
         "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A9/services/roadworks",
         "fetchedAt": "2026-07-05"
@@ -89,20 +1725,74 @@
     },
     {
       "type": "Feature",
-      "bbox": [11.460185, 48.766857, 11.472896, 48.871801],
+      "bbox": [
+        11.605389,
+        49.945926,
+        11.607868,
+        49.991444
+      ],
       "geometry": {
         "type": "LineString",
-        "coordinates": [[11.460185, 48.766857], [11.461103, 48.773271], [11.460253, 48.782415], [11.462825, 48.79504], [11.466329, 48.812438], [11.468276, 48.81738], [11.472585, 48.825564], [11.472896, 48.830049], [11.470194, 48.836833], [11.465977, 48.84655], [11.464874, 48.853147], [11.467948, 48.871801]]
+        "coordinates": [
+          [
+            11.60673,
+            49.945926
+          ],
+          [
+            11.607669,
+            49.949769
+          ],
+          [
+            11.607868,
+            49.951863
+          ],
+          [
+            11.607452,
+            49.954779
+          ],
+          [
+            11.606201,
+            49.959062
+          ],
+          [
+            11.605544,
+            49.962402
+          ],
+          [
+            11.605389,
+            49.965453
+          ],
+          [
+            11.606118,
+            49.972097
+          ],
+          [
+            11.606784,
+            49.976758
+          ],
+          [
+            11.607671,
+            49.983034
+          ],
+          [
+            11.607846,
+            49.98758
+          ],
+          [
+            11.607475,
+            49.991444
+          ]
+        ]
       },
       "properties": {
-        "id": "2023-001923--vi-bs.2025-11-12_00-00-00-000.devi-zus.2024-04-08_06-00-00-000.f_001.de15",
+        "id": "2023-000423--vi-bs.2026-07-04_00-00-00-000.devi-zus.2023-09-04_00-00-00-000.f_001.de23",
         "road": "A9",
         "type": "ROADWORKS",
         "status": "current",
-        "title": "A9 | Ingolstadt-Süd - Denkendorf",
-        "subtitle": "München -> Nürnberg",
-        "start": "2025-11-12T00:00:00+01:00",
-        "description": "Zeitraum dieser Bauphase: Beginn: 12.11.25 um 00:00 Uhr Ende: 31.12.26 um 06:00 Uhr (Ende der Gesamtmaßnahme: 01.01.27) A9: München -> Nürnberg, zwischen 1.8 km hinter AS Ingolstadt-Süd und 6.7 km vor AS Denkendorf Länge: 11.89 km | Max. 60 km/h | Maximale Durchfahrtsbreite: 5.5 m A9 EA1 Stamham - IN Nord",
+        "title": "A9 | Bayreuth-Süd - Bindlacher Berg",
+        "subtitle": "Nürnberg -> Halle/Leipzig",
+        "start": "2026-07-04T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 04.07.26 um 00:00 Uhr Ende: 18.08.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 22.08.27) A9: Nürnberg -> Halle/Leipzig, zwischen 2.0 km hinter AS Bayreuth-Süd und 2.7 km vor AS Bindlacher Berg Länge: 5.09 km | Maximale Durchfahrtsbreite: 8 m A9 Brückenneubau Hochbrücke Bayreuth",
         "source": "Autobahn-App API",
         "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A9/services/roadworks",
         "fetchedAt": "2026-07-05"
@@ -110,20 +1800,74 @@
     },
     {
       "type": "Feature",
-      "bbox": [11.607229, 50.028237, 11.607911, 50.029807],
+      "bbox": [
+        11.602461,
+        49.928197,
+        11.607867,
+        49.966343
+      ],
       "geometry": {
         "type": "LineString",
-        "coordinates": [[11.607911, 50.028237], [11.607871, 50.028466], [11.60779, 50.028752], [11.607679, 50.029002], [11.607542, 50.029236], [11.607358, 50.029551], [11.607229, 50.029807]]
+        "coordinates": [
+          [
+            11.602461,
+            49.928197
+          ],
+          [
+            11.602587,
+            49.930254
+          ],
+          [
+            11.603427,
+            49.933754
+          ],
+          [
+            11.604513,
+            49.937682
+          ],
+          [
+            11.605246,
+            49.940511
+          ],
+          [
+            11.606252,
+            49.944129
+          ],
+          [
+            11.607449,
+            49.948647
+          ],
+          [
+            11.607867,
+            49.951565
+          ],
+          [
+            11.607629,
+            49.954037
+          ],
+          [
+            11.606351,
+            49.958535
+          ],
+          [
+            11.605544,
+            49.962402
+          ],
+          [
+            11.605408,
+            49.966343
+          ]
+        ]
       },
       "properties": {
-        "id": "2025-048792--vi-bs.2026-04-08_00-00-00-000.devi-zus.2026-04-13_00-00-00-000_005.de5",
+        "id": "2026-034096--vi-fbm.2026-07-04_20-00-00-000.de0",
         "road": "A9",
-        "type": "ROADWORKS",
+        "type": "SHORT_TERM_ROADWORKS",
         "status": "current",
-        "title": "A9 | Kulmbach/Neudrossenfeld - Bayreuth/Kulmbach",
-        "subtitle": "Bamberg -> Bayreuth",
-        "start": "2026-04-08T00:00:00+02:00",
-        "description": "Zeitraum dieser Bauphase: Beginn: 08.04.26 um 00:00 Uhr Ende: 25.07.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 19.11.26) A70: Bamberg -> Bayreuth, zwischen 9.1 km hinter AS Kulmbach/Neudrossenfeld und 7.0 km vor AD Bayreuth/Kulmbach Länge: 0.18 km | Maximale Durchfahrtsbreite: 3.5 m A9 Erneuerung an der Decke D292",
+        "title": "A9 | Bayreuth-Süd - Bindlacher Berg",
+        "subtitle": "Nürnberg -> Halle/Leipzig",
+        "start": "",
+        "description": "Die Baustelle ist zu folgenden Zeiträumen gültig: 05.07.26 20:00 bis zum 06.07.26 05:30 Uhr. A9: Nürnberg -> Halle/Leipzig, zwischen AS Bayreuth-Süd und 5.5 km vor AS Bindlacher Berg Länge: 4.29 km | Maximale Durchfahrtsbreite: 305 m A9 von Bayreuth-Süd (AS) nach Bindlacher Berg (AS) Änderung Verkehrsführung",
         "source": "Autobahn-App API",
         "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A9/services/roadworks",
         "fetchedAt": "2026-07-05"
@@ -131,22 +1875,1074 @@
     },
     {
       "type": "Feature",
-      "bbox": [11.203056, 49.351346, 11.203846, 49.357626],
+      "bbox": [
+        12.363399,
+        48.635557,
+        12.52065,
+        48.661778
+      ],
       "geometry": {
         "type": "LineString",
-        "coordinates": [[11.203846, 49.351346], [11.203846, 49.351367], [11.203784, 49.352007], [11.203593, 49.3533], [11.203501, 49.35408], [11.203404, 49.35487], [11.203325, 49.355468], [11.203056, 49.357626]]
+        "coordinates": [
+          [
+            12.52065,
+            48.661778
+          ],
+          [
+            12.502721,
+            48.659824
+          ],
+          [
+            12.484381,
+            48.658901
+          ],
+          [
+            12.470233,
+            48.656681
+          ],
+          [
+            12.462283,
+            48.654607
+          ],
+          [
+            12.454665,
+            48.652082
+          ],
+          [
+            12.44194,
+            48.648222
+          ],
+          [
+            12.429223,
+            48.645464
+          ],
+          [
+            12.411327,
+            48.643032
+          ],
+          [
+            12.394518,
+            48.640466
+          ],
+          [
+            12.377199,
+            48.637207
+          ],
+          [
+            12.363399,
+            48.635557
+          ]
+        ]
       },
       "properties": {
-        "id": "2023-000427--vi-bs.2025-05-24_00-00-00-000.devi-zus.2023-09-25_00-00-00-000.f_001.de5",
-        "road": "A9",
+        "id": "2024-052184--vi-bs.2026-05-05_00-00-00-000.devi-zus.2025-05-01_07-30-00-000.f.de33",
+        "road": "A92",
         "type": "ROADWORKS",
         "status": "current",
-        "title": "A9 | Nürnberg/Feucht - Nürnberg-Ost",
-        "subtitle": "München -> Halle/Leipzig",
-        "start": "2025-05-24T00:00:00+02:00",
-        "description": "Zeitraum dieser Bauphase: Beginn: 24.05.25 um 00:00 Uhr Ende: 01.09.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 01.09.26) A9: München -> Halle/Leipzig, zwischen 0.2 km hinter AD Nürnberg/Feucht und 4.3 km vor AK Nürnberg-Ost Länge: 0.7 km | Maximale Durchfahrtsbreite: 5 m A9 Brückenneubau Schwarzachbrücke",
+        "title": "A92 | Dingolfing-Ost - Wörth a.d.Isar",
+        "subtitle": "Deggendorf -> München",
+        "start": "2026-05-05T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 05.05.26 um 00:00 Uhr Ende: 07.12.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 01.12.28) A92: Deggendorf -> München, zwischen 0.2 km hinter AS Dingolfing-Ost und 3.2 km vor AS Wörth a.d.Isar Länge: 12.03 km | Maximale Durchfahrtsbreite: 6.5 m A92 Grundhafte Erneuerung AK LA_Essenbach - AS DGF-Ost",
         "source": "Autobahn-App API",
-        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A9/services/roadworks",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A92/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        11.718211,
+        48.345527,
+        11.775787,
+        48.386722
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.775787,
+            48.386722
+          ],
+          [
+            11.769967,
+            48.384918
+          ],
+          [
+            11.764678,
+            48.38293
+          ],
+          [
+            11.757583,
+            48.379681
+          ],
+          [
+            11.750086,
+            48.375314
+          ],
+          [
+            11.742719,
+            48.369741
+          ],
+          [
+            11.738737,
+            48.365951
+          ],
+          [
+            11.735453,
+            48.362203
+          ],
+          [
+            11.730812,
+            48.355255
+          ],
+          [
+            11.726698,
+            48.350191
+          ],
+          [
+            11.72286,
+            48.347984
+          ],
+          [
+            11.718211,
+            48.345527
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2025-046376--vi-bs.2026-07-19_20-00-00-000.devi-zus.2026-06-01_00-00-00-000_001.de7",
+        "road": "A92",
+        "type": "ROADWORKS",
+        "status": "future",
+        "title": "A92 | Freising-Ost - Freising-Süd",
+        "subtitle": "Deggendorf -> München",
+        "start": "2026-07-19T20:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 19.07.26 um 20:00 Uhr Ende: 03.08.26 um 05:00 Uhr (Ende der Gesamtmaßnahme: 30.11.26) A92: Deggendorf -> München, zwischen 0.2 km hinter AS Freising-Ost und 1.9 km vor AS Freising-Süd Länge: 6.43 km | Maximale Durchfahrtsbreite: 6 m A92 Grundhafte Erneuerung AD Flughafen München bis AS Freising Ost",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A92/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        11.716941,
+        48.344469,
+        11.72127,
+        48.347021
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.716941,
+            48.344469
+          ],
+          [
+            11.717087,
+            48.344574
+          ],
+          [
+            11.717229,
+            48.344671
+          ],
+          [
+            11.718534,
+            48.345513
+          ],
+          [
+            11.71915,
+            48.345887
+          ],
+          [
+            11.719805,
+            48.346268
+          ],
+          [
+            11.720492,
+            48.346638
+          ],
+          [
+            11.720586,
+            48.346686
+          ],
+          [
+            11.721038,
+            48.346909
+          ],
+          [
+            11.72127,
+            48.347021
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2026-028857--vi-bs.2026-06-26_00-00-00-000.devi-zus.2026-06-09_10-00-00-000_002.de25",
+        "road": "A92",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A92 | Freising-Süd - Flughafen München",
+        "subtitle": "München -> Deggendorf",
+        "start": "2026-06-26T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 26.06.26 um 00:00 Uhr Ende: 09.07.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 09.07.26) A92: München -> Deggendorf, zwischen 1.7 km hinter AS Freising-Süd und 0.7 km vor AS Flughafen München Länge: 0.43 km | Maximale Durchfahrtsbreite: 8.5 m A92_Hinweisbeschilderung für St 2350 Ern. FB Mintraching -Achering (Römerstraße) StBA Freising",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A92/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        12.060762,
+        49.006217,
+        12.061229,
+        49.00799
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.060979,
+            49.006217
+          ],
+          [
+            12.060897,
+            49.006524
+          ],
+          [
+            12.060804,
+            49.006983
+          ],
+          [
+            12.060762,
+            49.007339
+          ],
+          [
+            12.060845,
+            49.007437
+          ],
+          [
+            12.060883,
+            49.007613
+          ],
+          [
+            12.061019,
+            49.007799
+          ],
+          [
+            12.061156,
+            49.007945
+          ],
+          [
+            12.061229,
+            49.00799
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2025-063334--vi-bs.2026-06-24_00-00-00-000.devi-zus.2026-04-13_00-00-00-000_014.de81",
+        "road": "A93",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A3 Erneuerung BW 50 Vorarbeiten",
+        "subtitle": "Holledau -> Regensburg",
+        "start": "2026-06-24T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 24.06.26 um 00:00 Uhr Ende: 11.07.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 24.11.26) Von A93: Holledau -> Regensburg, zwischen 0.6 km hinter AS Regensburg-Kumpfmühl und AS Regensburg-Königswiesen nach Abfahrt von der A93: AS Regensburg-Königswiesen (aus Richtung Regensburg-Kumpfmühl) Länge: 0.21 km | Maximale Durchfahrtsbreite: 2.75 m A3 Erneuerung BW 50 Vorarbeiten",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A93/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        12.061111,
+        49.002039,
+        12.065526,
+        49.005814
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.065526,
+            49.002068
+          ],
+          [
+            12.064788,
+            49.002039
+          ],
+          [
+            12.064513,
+            49.002059
+          ],
+          [
+            12.064152,
+            49.002117
+          ],
+          [
+            12.063547,
+            49.00231
+          ],
+          [
+            12.063096,
+            49.002613
+          ],
+          [
+            12.062949,
+            49.002763
+          ],
+          [
+            12.062652,
+            49.003102
+          ],
+          [
+            12.061791,
+            49.004435
+          ],
+          [
+            12.061491,
+            49.004865
+          ],
+          [
+            12.061335,
+            49.005218
+          ],
+          [
+            12.061111,
+            49.005814
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2025-063334--vi-bs.2026-06-24_00-00-00-000.devi-zus.2026-04-13_00-00-00-000_014.de79",
+        "road": "A93",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A3 Erneuerung BW 50 Vorarbeiten",
+        "subtitle": "AS Regensburg-Kumpfmühl (aus Richtung Regensburg) nach A93",
+        "start": "2026-06-24T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 24.06.26 um 00:00 Uhr Ende: 11.07.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 24.11.26) Von Auffahrt auf die A93: AS Regensburg-Kumpfmühl (aus Richtung Regensburg) nach A93: Holledau -> Regensburg, zwischen AS Regensburg-Kumpfmühl und 0.5 km vor AS Regensburg-Königswiesen Länge: 0.58 km | Maximale Durchfahrtsbreite: 2.75 m A3 Erneuerung BW 50 Vorarbeiten",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A93/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        12.151753,
+        49.754972,
+        12.153889,
+        49.770543
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.152865,
+            49.770543
+          ],
+          [
+            12.152378,
+            49.769466
+          ],
+          [
+            12.152105,
+            49.76868
+          ],
+          [
+            12.15186,
+            49.767573
+          ],
+          [
+            12.151753,
+            49.766664
+          ],
+          [
+            12.151803,
+            49.765141
+          ],
+          [
+            12.15193,
+            49.764207
+          ],
+          [
+            12.152359,
+            49.762237
+          ],
+          [
+            12.152594,
+            49.761363
+          ],
+          [
+            12.153333,
+            49.758627
+          ],
+          [
+            12.153569,
+            49.757396
+          ],
+          [
+            12.153889,
+            49.754972
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2025-048817--vi-bs.2026-07-08_00-00-00-000.devi-zus.2026-05-04_00-00-00-000_001.de1",
+        "road": "A93",
+        "type": "ROADWORKS",
+        "status": "future",
+        "title": "A93 | Angerholz - Neustadt an der Waldnaab",
+        "subtitle": "Hof -> Weiden",
+        "start": "2026-07-08T00:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 08.07.26 um 00:00 Uhr Ende: 01.12.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 01.12.26) A93: Hof -> Weiden, zwischen 1.3 km hinter Angerholz und 1.8 km vor AS Neustadt an der Waldnaab Länge: 1.75 km | Maximale Durchfahrtsbreite: 6.5 m A93 Brückeninstandsetzung BW 107",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A93/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        12.686171,
+        48.251753,
+        12.706358,
+        48.254523
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.686171,
+            48.251753
+          ],
+          [
+            12.687864,
+            48.25212
+          ],
+          [
+            12.689907,
+            48.252797
+          ],
+          [
+            12.691576,
+            48.253397
+          ],
+          [
+            12.692977,
+            48.253821
+          ],
+          [
+            12.694855,
+            48.25421
+          ],
+          [
+            12.696931,
+            48.254452
+          ],
+          [
+            12.698518,
+            48.254523
+          ],
+          [
+            12.700208,
+            48.254484
+          ],
+          [
+            12.701466,
+            48.254377
+          ],
+          [
+            12.704277,
+            48.253968
+          ],
+          [
+            12.706358,
+            48.253741
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2026-030753--vi-bs.2026-07-09_19-00-00-000.devi-bs.2026-07-09_20-00-00-000.de4",
+        "road": "A94",
+        "type": "SHORT_TERM_ROADWORKS",
+        "status": "future",
+        "title": "A94 | Altötting - Neuötting-Ost",
+        "subtitle": "München -> Passau",
+        "start": "",
+        "description": "Die Baustelle ist zu folgenden Zeiträumen gültig: 10.07.26 von 05:30 bis 11:00 Uhr 11.07.26 von 05:30 bis 11:00 Uhr A94: München -> Passau, zwischen 1.6 km hinter AS Altötting und 3.6 km vor AS Neuötting-Ost Länge: 1.57 km | Max. 80 km/h | Maximale Durchfahrtsbreite: 3.75 m A94 Ausleitung AS Altötting aufgrund Fahrbahnerneuerung",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A94/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        11.707402,
+        48.141953,
+        11.72898,
+        48.142618
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.72898,
+            48.142618
+          ],
+          [
+            11.726403,
+            48.14241
+          ],
+          [
+            11.724633,
+            48.142276
+          ],
+          [
+            11.721808,
+            48.14209
+          ],
+          [
+            11.720196,
+            48.142026
+          ],
+          [
+            11.71739,
+            48.141956
+          ],
+          [
+            11.715786,
+            48.141953
+          ],
+          [
+            11.712413,
+            48.141994
+          ],
+          [
+            11.712104,
+            48.142003
+          ],
+          [
+            11.710481,
+            48.142065
+          ],
+          [
+            11.709109,
+            48.14212
+          ],
+          [
+            11.707402,
+            48.142191
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2025-033096--vi-bs.2026-02-27_20-00-00-000.devi-zus.2026-03-01_00-00-00-000_004.de3",
+        "road": "A94",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A94 | Feldkirchen-Ost - München-Riem",
+        "subtitle": "Passau -> München",
+        "start": "2026-02-27T20:00:00+01:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 27.02.26 um 20:00 Uhr Ende: 01.02.27 um 00:00 Uhr (Ende der Gesamtmaßnahme: 31.05.27) A94: Passau -> München, zwischen 1.2 km hinter AS Feldkirchen-Ost und 1.5 km vor AS München-Riem Länge: 1.61 km | Maximale Durchfahrtsbreite: 9.25 m A94 BW 6-3 Fuß- und Radwegbrücke Messe",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A94/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        12.200711,
+        48.250062,
+        12.27001,
+        48.255016
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.200711,
+            48.254089
+          ],
+          [
+            12.205482,
+            48.252777
+          ],
+          [
+            12.210512,
+            48.252097
+          ],
+          [
+            12.215695,
+            48.252071
+          ],
+          [
+            12.22108,
+            48.252756
+          ],
+          [
+            12.227646,
+            48.254344
+          ],
+          [
+            12.232843,
+            48.255016
+          ],
+          [
+            12.23754,
+            48.254838
+          ],
+          [
+            12.24302,
+            48.253628
+          ],
+          [
+            12.248154,
+            48.251927
+          ],
+          [
+            12.253784,
+            48.250889
+          ],
+          [
+            12.27001,
+            48.250062
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2026-006168--vi-bs.2026-06-03_06-00-00-000.devi-zus.2026-04-13_00-00-00-000_023.de1",
+        "road": "A94",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A94 | Fürthholz - Schwindegg",
+        "subtitle": "München -> Passau",
+        "start": "2026-06-03T06:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 03.06.26 um 06:00 Uhr Ende: 19.07.26 um 00:00 Uhr (Ende der Gesamtmaßnahme: 19.07.26) A94: München -> Passau, zwischen 1.0 km hinter Fürthholz und 0.9 km vor AS Schwindegg Länge: 5.32 km | Max. 100 km/h | Maximale Durchfahrtsbreite: 3 m A94 von Schwindegg (AS) Erneuerung der Fahrbahn",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A94/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        11.487699,
+        48.090352,
+        11.487734,
+        48.092176
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.487699,
+            48.092176
+          ],
+          [
+            11.487716,
+            48.091373
+          ],
+          [
+            11.487734,
+            48.09066
+          ],
+          [
+            11.487732,
+            48.090352
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2026-034055--vi-bs.2026-07-06_08-00-00-000.devi-zus.2026-07-06_08-00-00-000_009.de1",
+        "road": "A95",
+        "type": "SHORT_TERM_ROADWORKS",
+        "status": "future",
+        "title": "A95 | München-Kreuzhof - München-Fürstenried",
+        "subtitle": "München -> Garmisch-Partenkirchen",
+        "start": "",
+        "description": "Die Baustelle ist zu folgenden Zeiträumen gültig: 06.07.26 von 08:00 bis 16:00 Uhr A95: München -> Garmisch-Partenkirchen, zwischen 1.7 km hinter AS München-Kreuzhof und 0.5 km vor AS München-Fürstenried Länge: 0.2 km | Max. 80 km/h | Maximale Durchfahrtsbreite: 8 m IB Kittler Bauwerksprüfung",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A95/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        11.336909,
+        47.76982,
+        11.498183,
+        48.100749
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.498183,
+            48.100749
+          ],
+          [
+            11.474092,
+            48.062445
+          ],
+          [
+            11.43072,
+            48.036172
+          ],
+          [
+            11.417322,
+            48.013578
+          ],
+          [
+            11.429213,
+            47.992652
+          ],
+          [
+            11.411265,
+            47.96175
+          ],
+          [
+            11.402696,
+            47.930742
+          ],
+          [
+            11.39631,
+            47.905157
+          ],
+          [
+            11.396091,
+            47.872391
+          ],
+          [
+            11.376191,
+            47.845921
+          ],
+          [
+            11.36014,
+            47.815759
+          ],
+          [
+            11.336909,
+            47.76982
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2026-033469--vi-bs.2026-07-02_05-00-00-000.devi-bs.2026-07-01_06-00-00-000_001.de3",
+        "road": "A95",
+        "type": "SHORT_TERM_ROADWORKS",
+        "status": "current",
+        "title": "A95 | München-Kreuzhof - Sindelsdorf",
+        "subtitle": "München -> Garmisch-Partenkirchen",
+        "start": "",
+        "description": "Die Baustelle ist zu folgenden Zeiträumen gültig: Jeden Montag, Dienstag, Mittwoch und Donnerstag zwischen dem 06.07.26 und dem 09.07.26 von 05:00 bis 16:00 Uhr. Jeden Montag, Dienstag, Mittwoch und Donnerstag zwischen dem 13.07.26 und dem 16.07.26 von 05:00 bis 16:00 Uhr. Jeden Montag, Dienstag, Mittwoch und Donnerstag zwischen dem 20.07.26 und dem 23.07.26 von 05:00 bis 16:00 Uhr. A95: München -> Garmisch-Partenkirchen, zwischen 0.3 km hinter AS München-Kreuzhof und 4.9 km vor AS Sindelsdorf Länge: 41.24 km | Max. 80 km/h | Maximale Durchfahrtsbreite: 5 m Mähen links",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A95/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        10.102402,
+        47.945033,
+        10.110998,
+        47.961969
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.102402,
+            47.945033
+          ],
+          [
+            10.103377,
+            47.946528
+          ],
+          [
+            10.103873,
+            47.94735
+          ],
+          [
+            10.104974,
+            47.949646
+          ],
+          [
+            10.10553,
+            47.951112
+          ],
+          [
+            10.106819,
+            47.954959
+          ],
+          [
+            10.107184,
+            47.955821
+          ],
+          [
+            10.107952,
+            47.95742
+          ],
+          [
+            10.108471,
+            47.95834
+          ],
+          [
+            10.109841,
+            47.960388
+          ],
+          [
+            10.11051,
+            47.961302
+          ],
+          [
+            10.110998,
+            47.961969
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2025-047716--vi-bs.2026-06-10_06-00-00-000.devi-zus.2026-03-01_00-00-00-000_005.de1",
+        "road": "A96",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A96 | Aitrach - Buxheimer Wald",
+        "subtitle": "Lindau -> München",
+        "start": "2026-06-10T06:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 10.06.26 um 06:00 Uhr Ende: 14.07.26 um 22:00 Uhr (Ende der Gesamtmaßnahme: 16.07.26) A96: Lindau -> München, zwischen 1.3 km hinter AS Aitrach und 1.0 km vor Buxheimer Wald Länge: 2 km | Maximale Durchfahrtsbreite: 5.85 m A96 B.K.034 A96 BW 57-1 MM FR 1u2",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A96/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        10.102397,
+        47.945025,
+        10.110992,
+        47.961961
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.102397,
+            47.945025
+          ],
+          [
+            10.103377,
+            47.946528
+          ],
+          [
+            10.103873,
+            47.94735
+          ],
+          [
+            10.104974,
+            47.949646
+          ],
+          [
+            10.10553,
+            47.951112
+          ],
+          [
+            10.106819,
+            47.954959
+          ],
+          [
+            10.107184,
+            47.955821
+          ],
+          [
+            10.107952,
+            47.95742
+          ],
+          [
+            10.108471,
+            47.95834
+          ],
+          [
+            10.109841,
+            47.960388
+          ],
+          [
+            10.11051,
+            47.961302
+          ],
+          [
+            10.110992,
+            47.961961
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2025-047716--vi-fbm.2026-07-14_22-00-00-000.devi-zus.2026-03-01_00-00-00-000_005.de9",
+        "road": "A96",
+        "type": "SHORT_TERM_ROADWORKS",
+        "status": "future",
+        "title": "A96 | Aitrach - Buxheimer Wald",
+        "subtitle": "Lindau -> München",
+        "start": "",
+        "description": "Die Baustelle ist zu folgenden Zeiträumen gültig: 14.07.26 22:00 bis zum 15.07.26 06:00 Uhr. 15.07.26 22:00 bis zum 16.07.26 06:00 Uhr. A96: Lindau -> München, zwischen 1.3 km hinter AS Aitrach und 1.0 km vor Buxheimer Wald Länge: 2 km | Maximale Durchfahrtsbreite: 3.25 m A96 B.K.034 A96 BW 57-1 MM FR 1u2",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A96/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        11.547457,
+        48.219983,
+        11.631749,
+        48.228913
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.631749,
+            48.219983
+          ],
+          [
+            11.627119,
+            48.222197
+          ],
+          [
+            11.621738,
+            48.224345
+          ],
+          [
+            11.615108,
+            48.226321
+          ],
+          [
+            11.610141,
+            48.227406
+          ],
+          [
+            11.603466,
+            48.228378
+          ],
+          [
+            11.594977,
+            48.228913
+          ],
+          [
+            11.589041,
+            48.228824
+          ],
+          [
+            11.580735,
+            48.228195
+          ],
+          [
+            11.569348,
+            48.227234
+          ],
+          [
+            11.553334,
+            48.226774
+          ],
+          [
+            11.547457,
+            48.226607
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2026-033967--vi-bs.2026-07-06_20-00-00-000.devi-zus.2026-07-06_20-00-00-000_007.de3",
+        "road": "A99",
+        "type": "SHORT_TERM_ROADWORKS",
+        "status": "future",
+        "title": "A99 | Aschheim/Ismaning - München-Feldmoching",
+        "subtitle": "München-Süd -> München-Süd-West",
+        "start": "",
+        "description": "Die Baustelle ist zu folgenden Zeiträumen gültig: 06.07.26 20:00 bis zum 07.07.26 05:00 Uhr. 07.07.26 20:00 bis zum 08.07.26 05:00 Uhr. 08.07.26 20:00 bis zum 09.07.26 05:00 Uhr. 09.07.26 20:15 bis zum 10.07.26 05:00 Uhr. A99: München-Süd -> München-Süd-West, zwischen 5.6 km hinter AS Aschheim/Ismaning und 0.4 km vor AD München-Feldmoching Länge: 6.5 km | Maximale Durchfahrtsbreite: 5 m A99 von München-Feldmoching (AD) nach AschheimIsmaning (AS) Markierungsarbeiten",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A99/services/roadworks",
+        "fetchedAt": "2026-07-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        11.437601,
+        48.201034,
+        11.473627,
+        48.209847
+      ],
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.473627,
+            48.209847
+          ],
+          [
+            11.469428,
+            48.209827
+          ],
+          [
+            11.468327,
+            48.209769
+          ],
+          [
+            11.46671,
+            48.209565
+          ],
+          [
+            11.462505,
+            48.208175
+          ],
+          [
+            11.459039,
+            48.206123
+          ],
+          [
+            11.454845,
+            48.204846
+          ],
+          [
+            11.451137,
+            48.204563
+          ],
+          [
+            11.44485,
+            48.204336
+          ],
+          [
+            11.442592,
+            48.203967
+          ],
+          [
+            11.439508,
+            48.202688
+          ],
+          [
+            11.437601,
+            48.201034
+          ]
+        ]
+      },
+      "properties": {
+        "id": "2025-039396--vi-bs.2026-07-01_05-00-00-000.devi-zus.2026-05-22_22-00-00-000.de7",
+        "road": "A99",
+        "type": "ROADWORKS",
+        "status": "current",
+        "title": "A99 | München-Ludwigsfeld - München-West",
+        "subtitle": "München-Nord -> München-Süd-West",
+        "start": "2026-07-01T05:00:00+02:00",
+        "description": "Zeitraum dieser Bauphase: Beginn: 01.07.26 um 05:00 Uhr Ende: 14.07.26 um 20:00 Uhr (Ende der Gesamtmaßnahme: 14.07.26) A99: München-Nord -> München-Süd-West, zwischen 0.9 km hinter AS München-Ludwigsfeld und 2.3 km vor AK München-West Länge: 2.98 km | Max. 60 km/h | Maximale Durchfahrtsbreite: 8.45 m A99 Tunnel Allach",
+        "source": "Autobahn-App API",
+        "sourceUrl": "https://verkehr.autobahn.de/o/autobahn/A99/services/roadworks",
         "fetchedAt": "2026-07-05"
       }
     }

@@ -2,11 +2,15 @@ package mobilithek
 
 import "encoding/json"
 
+// Coordinate stores a geographic WGS84 coordinate in latitude/longitude form.
 type Coordinate struct {
 	Lat float64 `json:"lat"`
 	Lon float64 `json:"lon"`
 }
 
+// Event is the generic intermediate representation extracted from DATEX II XML.
+// It intentionally contains common fields only; source-specific projects can
+// carry additional values through Extra or their own domain model.
 type Event struct {
 	Source      string              `json:"source,omitempty"`
 	ID          string              `json:"id,omitempty"`
@@ -22,12 +26,14 @@ type Event struct {
 	Extra       map[string][]string `json:"extra,omitempty"`
 }
 
+// GeoJSON is a minimal RFC 7946 FeatureCollection representation.
 type GeoJSON struct {
 	Type     string           `json:"type"`
 	BBox     []float64        `json:"bbox,omitempty"`
 	Features []GeoJSONFeature `json:"features"`
 }
 
+// GeoJSONFeature is a single GeoJSON Feature.
 type GeoJSONFeature struct {
 	Type       string                 `json:"type"`
 	BBox       []float64              `json:"bbox,omitempty"`
@@ -35,11 +41,14 @@ type GeoJSONFeature struct {
 	Properties map[string]interface{} `json:"properties"`
 }
 
+// GeoJSONGeometry stores Point or LineString geometries emitted by this package.
 type GeoJSONGeometry struct {
 	Type        string      `json:"type"`
 	Coordinates interface{} `json:"coordinates"`
 }
 
+// GeoJSONFromDATEX2XML extracts generic events from DATEX II-like XML and
+// converts events with display coordinates to GeoJSON.
 func GeoJSONFromDATEX2XML(body []byte, sourceName string) (GeoJSON, error) {
 	events, err := ExtractEventsFromDATEX2XML(body, sourceName)
 	if err != nil {
@@ -48,6 +57,8 @@ func GeoJSONFromDATEX2XML(body []byte, sourceName string) (GeoJSON, error) {
 	return EventsToGeoJSON(events), nil
 }
 
+// EventsToGeoJSON converts events to a GeoJSON FeatureCollection.
+// Events without valid coordinates are skipped.
 func EventsToGeoJSON(events []Event) GeoJSON {
 	features := make([]GeoJSONFeature, 0, len(events))
 	var collectionBounds coordinateBounds
@@ -113,6 +124,7 @@ func EventsToGeoJSON(events []Event) GeoJSON {
 	}
 }
 
+// MarshalGeoJSON serializes a GeoJSON FeatureCollection.
 func MarshalGeoJSON(geojson GeoJSON, pretty bool) ([]byte, error) {
 	if pretty {
 		return json.MarshalIndent(geojson, "", "  ")

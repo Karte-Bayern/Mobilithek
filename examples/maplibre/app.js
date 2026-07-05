@@ -131,6 +131,14 @@ function filteredEvents() {
 
 function renderList(data) {
   eventListEl.replaceChildren();
+  if (data.features.length === 0) {
+    const item = document.createElement("li");
+    item.className = "event-empty";
+    item.textContent = "Keine Meldungen für diesen Filter.";
+    eventListEl.appendChild(item);
+    return;
+  }
+
   for (const feature of data.features) {
     const item = document.createElement("li");
     const button = document.createElement("button");
@@ -197,15 +205,24 @@ function popupAnchor(feature) {
 }
 
 function fitToData(data) {
+  if (data.bbox) {
+    map.fitBounds(boundsFromBBox(data.bbox), { padding: 72, maxZoom: 11, duration: 400 });
+    return;
+  }
+
   const bounds = new maplibregl.LngLatBounds();
   let hasCoordinates = false;
 
   for (const feature of data.features) {
-    const coordinates = feature.geometry.type === "Point"
-      ? [feature.geometry.coordinates]
-      : feature.geometry.coordinates;
+    if (feature.bbox) {
+      const featureBounds = boundsFromBBox(feature.bbox);
+      bounds.extend(featureBounds[0]);
+      bounds.extend(featureBounds[1]);
+      hasCoordinates = true;
+      continue;
+    }
 
-    for (const coordinate of coordinates) {
+    for (const coordinate of featureCoordinates(feature)) {
       bounds.extend(coordinate);
       hasCoordinates = true;
     }
@@ -214,6 +231,19 @@ function fitToData(data) {
   if (hasCoordinates) {
     map.fitBounds(bounds, { padding: 72, maxZoom: 11, duration: 400 });
   }
+}
+
+function featureCoordinates(feature) {
+  return feature.geometry.type === "Point"
+    ? [feature.geometry.coordinates]
+    : feature.geometry.coordinates;
+}
+
+function boundsFromBBox(bbox) {
+  return [
+    [bbox[0], bbox[1]],
+    [bbox[2], bbox[3]]
+  ];
 }
 
 function colorExpression() {

@@ -103,6 +103,12 @@ select {
   font-size: 12px;
 }
 
+.event-empty {
+  padding: 10px;
+  color: #52606d;
+  font-size: 13px;
+}
+
 .badge {
   display: inline-flex;
   width: fit-content;

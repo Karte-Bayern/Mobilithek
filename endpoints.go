@@ -7,20 +7,28 @@ import (
 	"strings"
 )
 
+// DefaultBaseURL is the public Mobilithek HTTPS endpoint used by machine-account pulls.
 const DefaultBaseURL = "https://mobilithek.info:8443"
 
+// EndpointKind selects a known Mobilithek subscription endpoint shape.
 type EndpointKind string
 
 const (
-	EndpointAuto      EndpointKind = "auto"
-	EndpointGeneric   EndpointKind = "generic"
-	EndpointDATEX2V2  EndpointKind = "datex2-v2"
-	EndpointDATEX2V3  EndpointKind = "datex2-v3"
+	// EndpointAuto tries the known endpoint variants in a stable order.
+	EndpointAuto EndpointKind = "auto"
+	// EndpointGeneric is the generic V1 subscription endpoint.
+	EndpointGeneric EndpointKind = "generic"
+	// EndpointDATEX2V2 is the DATEX II v2 client pull endpoint.
+	EndpointDATEX2V2 EndpointKind = "datex2-v2"
+	// EndpointDATEX2V3 is the DATEX II v3 subscription endpoint.
+	EndpointDATEX2V3 EndpointKind = "datex2-v3"
+	// EndpointContainer is the Mobilithek container subscription endpoint.
 	EndpointContainer EndpointKind = "container"
 )
 
 var numericIDPattern = regexp.MustCompile(`^[0-9]+$`)
 
+// CandidateURLs returns the URL candidates for a subscription and endpoint kind.
 func CandidateURLs(baseURL string, subscriptionID string, endpoint EndpointKind) ([]string, error) {
 	endpoint = normalizeEndpoint(endpoint)
 	if endpoint == EndpointAuto {
@@ -48,6 +56,7 @@ func CandidateURLs(baseURL string, subscriptionID string, endpoint EndpointKind)
 	return []string{u}, nil
 }
 
+// EndpointURL builds a concrete Mobilithek subscription URL.
 func EndpointURL(baseURL string, subscriptionID string, endpoint EndpointKind) (string, error) {
 	baseURL = strings.TrimRight(strings.TrimSpace(baseURL), "/")
 	if baseURL == "" {

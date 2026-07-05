@@ -12,8 +12,11 @@ SUBSCRIPTION_XML ?= $(OUT_DIR)/subscription.xml
 EVENTS_GEOJSON ?= $(OUT_DIR)/events.geojson
 SAMPLE_XML ?= examples/data/sample-subscription.xml
 PORT ?= 8787
+REAL_ROADWORKS_GEOJSON ?= examples/maplibre/data/real-roadworks.geojson
+REAL_ROADWORKS_FETCHED_AT ?= $(shell date +%Y-%m-%d)
+REAL_ROADWORKS_FIXTURE_DIR ?=
 
-.PHONY: help cert fetch convert sample web all fmt test vet check clean doctor
+.PHONY: help cert fetch convert sample real-sample web all fmt test vet check clean doctor
 
 help:
 	@printf '\n'
@@ -30,6 +33,7 @@ help:
 	@printf '  make fetch     Fetch subscription XML and write converted GeoJSON to %s\n' '$(EVENTS_GEOJSON)'
 	@printf '  make convert   Convert %s to %s\n' '$(SUBSCRIPTION_XML)' '$(EVENTS_GEOJSON)'
 	@printf '  make sample    Convert the included synthetic XML fixture to %s\n' '$(EVENTS_GEOJSON)'
+	@printf '  make real-sample  Refresh the small GitHub Pages roadworks excerpt\n'
 	@printf '  make web       Start the MapLibre demo server on http://127.0.0.1:%s/\n' '$(PORT)'
 	@printf '  make all       Run cert, fetch, then web\n'
 	@printf '  make fmt       Format Go sources\n'
@@ -142,6 +146,14 @@ sample:
 	echo "Sample GeoJSON ready: $(EVENTS_GEOJSON)"; \
 	echo "Start the demo with: make web"
 
+real-sample:
+	@set -euo pipefail; \
+	cmd=(node examples/maplibre/data/build-real-roadworks.mjs --fetched-at "$(REAL_ROADWORKS_FETCHED_AT)" --output "$(REAL_ROADWORKS_GEOJSON)"); \
+	if [[ -n "$(REAL_ROADWORKS_FIXTURE_DIR)" ]]; then \
+		cmd+=(--fixture-dir "$(REAL_ROADWORKS_FIXTURE_DIR)"); \
+	fi; \
+	"$${cmd[@]}"
+
 web:
 	@set -euo pipefail; \
 	if [[ -f "$(EVENTS_GEOJSON)" ]]; then \
@@ -168,6 +180,8 @@ vet:
 check: test
 	@set -euo pipefail; \
 	node --check examples/maplibre/app.js; \
+	node --check examples/maplibre/data/build-real-roadworks.mjs; \
+	node -e 'const fs=require("fs"); const data=JSON.parse(fs.readFileSync("$(REAL_ROADWORKS_GEOJSON)","utf8")); if (data.type !== "FeatureCollection" || data.features.length !== 42) throw new Error("expected 42 real roadworks features"); for (const feature of data.features) { if (!feature.properties.sourceUrl || !feature.properties.fetchedAt) throw new Error("missing roadworks source metadata"); }'; \
 	forbidden_files="$$(git ls-files --cached --others --exclude-standard | rg '(^|/)(\.DS_Store|\.env(\..*)?|[^/]+\.(p12|pfx|key|pem|crt|cer|der))$$' || true)"; \
 	if [[ -n "$$forbidden_files" ]]; then \
 		echo "Public-folder safety check failed: credential or metadata file would be committed."; \

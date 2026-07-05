@@ -18,6 +18,7 @@ import (
 const defaultUserAgent = "github.com/karte-bayern/mobilithek"
 const defaultMaxBytes = 250 * 1024 * 1024
 
+// Client fetches Mobilithek subscription data over HTTP or mTLS.
 type Client struct {
 	baseURL    string
 	httpClient *http.Client
@@ -26,6 +27,7 @@ type Client struct {
 	maxBytes   int64
 }
 
+// Option configures a Client created by New.
 type Option func(*clientConfig) error
 
 type clientConfig struct {
@@ -41,6 +43,7 @@ type clientConfig struct {
 	timeout            time.Duration
 }
 
+// New creates a Mobilithek client with conservative defaults.
 func New(options ...Option) (*Client, error) {
 	cfg := clientConfig{
 		baseURL:   DefaultBaseURL,
@@ -77,6 +80,7 @@ func New(options ...Option) (*Client, error) {
 	}, nil
 }
 
+// WithBaseURL overrides the Mobilithek base URL.
 func WithBaseURL(baseURL string) Option {
 	return func(cfg *clientConfig) error {
 		baseURL = strings.TrimRight(strings.TrimSpace(baseURL), "/")
@@ -88,6 +92,7 @@ func WithBaseURL(baseURL string) Option {
 	}
 }
 
+// WithHTTPClient uses a caller-provided HTTP client.
 func WithHTTPClient(httpClient *http.Client) Option {
 	return func(cfg *clientConfig) error {
 		if httpClient == nil {
@@ -98,6 +103,7 @@ func WithHTTPClient(httpClient *http.Client) Option {
 	}
 }
 
+// WithUserAgent overrides the User-Agent header sent by FetchURL.
 func WithUserAgent(userAgent string) Option {
 	return func(cfg *clientConfig) error {
 		userAgent = strings.TrimSpace(userAgent)
@@ -109,6 +115,7 @@ func WithUserAgent(userAgent string) Option {
 	}
 }
 
+// WithAccept overrides the Accept header sent by FetchURL.
 func WithAccept(accept string) Option {
 	return func(cfg *clientConfig) error {
 		accept = strings.TrimSpace(accept)
@@ -120,6 +127,7 @@ func WithAccept(accept string) Option {
 	}
 }
 
+// WithMaxBytes limits the decoded response body size.
 func WithMaxBytes(maxBytes int64) Option {
 	return func(cfg *clientConfig) error {
 		if maxBytes <= 0 {
@@ -130,6 +138,7 @@ func WithMaxBytes(maxBytes int64) Option {
 	}
 }
 
+// WithTimeout sets the timeout on the default HTTP client created by New.
 func WithTimeout(timeout time.Duration) Option {
 	return func(cfg *clientConfig) error {
 		if timeout <= 0 {
@@ -140,6 +149,7 @@ func WithTimeout(timeout time.Duration) Option {
 	}
 }
 
+// WithClientCertificate configures PEM client certificate files for mTLS.
 func WithClientCertificate(certFile string, keyFile string) Option {
 	return func(cfg *clientConfig) error {
 		certFile = strings.TrimSpace(certFile)
@@ -156,6 +166,7 @@ func WithClientCertificate(certFile string, keyFile string) Option {
 	}
 }
 
+// WithRootCA appends a PEM root CA bundle to the system trust store.
 func WithRootCA(caFile string) Option {
 	return func(cfg *clientConfig) error {
 		cfg.caFile = strings.TrimSpace(caFile)
@@ -163,6 +174,8 @@ func WithRootCA(caFile string) Option {
 	}
 }
 
+// WithInsecureSkipVerify disables server certificate verification.
+// It is intended only for closed test systems.
 func WithInsecureSkipVerify(enabled bool) Option {
 	return func(cfg *clientConfig) error {
 		cfg.insecureSkipVerify = enabled
@@ -170,10 +183,14 @@ func WithInsecureSkipVerify(enabled bool) Option {
 	}
 }
 
+// FetchSubscription tries one Mobilithek subscription endpoint, or all known
+// candidates when endpoint is EndpointAuto.
 func (c *Client) FetchSubscription(ctx context.Context, subscriptionID string, endpoint EndpointKind) (*Response, error) {
 	return c.FetchSubscriptionWithHeaders(ctx, subscriptionID, endpoint, nil)
 }
 
+// FetchSubscriptionWithHeaders is like FetchSubscription, but sends additional
+// HTTP headers such as If-None-Match or If-Modified-Since.
 func (c *Client) FetchSubscriptionWithHeaders(ctx context.Context, subscriptionID string, endpoint EndpointKind, headers map[string]string) (*Response, error) {
 	urls, err := CandidateURLs(c.baseURL, subscriptionID, endpoint)
 	if err != nil {
@@ -204,6 +221,8 @@ func (c *Client) FetchSubscriptionWithHeaders(ctx context.Context, subscriptionI
 	return nil, lastErr
 }
 
+// FetchURL performs a single GET request and returns response metadata plus the
+// decoded body, respecting gzip encoding and the configured size limit.
 func (c *Client) FetchURL(ctx context.Context, rawURL string, headers map[string]string) (*Response, error) {
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, rawURL, nil)
 	if err != nil {
