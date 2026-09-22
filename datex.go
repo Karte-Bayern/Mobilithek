@@ -42,6 +42,10 @@ func ExtractEventsFromDATEX2XML(body []byte, sourceName string) ([]Event, error)
 				}
 				current = &Event{Source: sourceName, Extra: map[string][]string{}}
 				currentDepth = len(path)
+				// A pending half-coordinate belongs to whatever event was
+				// just finalized above; carrying it into the new event would
+				// pair unrelated latitude/longitude values together.
+				lat, lon = nil, nil
 				for _, attr := range typed.Attr {
 					lower := strings.ToLower(attr.Name.Local)
 					if lower == "id" || strings.HasSuffix(lower, "id") {
@@ -118,9 +122,21 @@ func ExtractEventsFromDATEX2XML(body []byte, sourceName string) ([]Event, error)
 }
 
 func isEventStart(name string) bool {
-	return strings.EqualFold(name, "situationRecord") ||
-		strings.EqualFold(name, "elaboratedData") ||
-		strings.EqualFold(name, "roadworks")
+	switch strings.ToLower(name) {
+	// situationRecord covers every DATEX II situation subtype (the concrete
+	// kind is carried in its xsi:type attribute, e.g. MaintenanceWorks,
+	// AbnormalTraffic, Accident, Conditions, NetworkManagement), so it
+	// already spans most traffic-event publishers Mobilithek mediates.
+	case "situationrecord", "elaborateddata", "roadworks":
+		return true
+	// parkingRecord(Status) and vmsUnit come from different DATEX II
+	// publication kinds entirely (parking availability and variable message
+	// signs), which is why they need their own top-level element names.
+	case "parkingrecord", "parkingrecordstatus", "vmsunit":
+		return true
+	default:
+		return false
+	}
 }
 
 func finalizeEvent(event *Event) {
@@ -173,7 +189,20 @@ func applyEventText(event *Event, path []string, text string) {
 			event.Type = text
 		}
 		appendExtra(event, leaf, text)
+	case "parkingfacilitystatus", "parkingfacilityoutlookstatus":
+		if event.Type == "" {
+			event.Type = text
+		}
+		appendExtra(event, leaf, text)
+	case "parkingnumberofvacantspaces", "totalnumberofvacantspaces", "parkingoccupancy", "parkingnumberofoccupiedspaces":
+		appendExtra(event, leaf, text)
 	default:
+		if strings.Contains(joined, "vms") && (leaf == "text" || leaf == "value") && len(text) < 500 {
+			if event.Description == "" {
+				event.Description = text
+			}
+			appendExtra(event, "vms_text", text)
+		}
 		if strings.Contains(joined, "road") && len(text) < 200 {
 			appendExtra(event, "road_context", text)
 		}

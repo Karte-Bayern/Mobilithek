@@ -1,6 +1,22 @@
 SHELL := /bin/bash
 .DEFAULT_GOAL := help
 
+# Every variable below is exported into each recipe's environment (the bare
+# "export" directive), and recipes reference them as shell variables
+# ($$VAR) rather than via Make's own $(VAR) text substitution. That
+# distinction matters: $(VAR) is substituted into the recipe's shell command
+# text before the shell ever parses it, so a value containing a double quote
+# or other shell metacharacter (e.g. CERT_FILE='x"; rm -rf ~; echo "') would
+# inject arbitrary shell syntax. $$VAR is a real environment variable the
+# shell expands as opaque data, which cannot do that.
+export
+
+# Some machines have a global `go env -w GO111MODULE=off` left over from
+# older GOPATH-based projects, which breaks every `go run`/`go test`/`go
+# vet` in this Makefile even though this module has a go.mod. Force module
+# mode for these recipes regardless of that global setting.
+GO111MODULE ?= on
+
 CERT_DIR ?= certs
 CERT_FILE ?= $(if $(MOBILITHEK_CERT_FILE),$(MOBILITHEK_CERT_FILE),$(CERT_DIR)/client.crt)
 KEY_FILE ?= $(if $(MOBILITHEK_KEY_FILE),$(MOBILITHEK_KEY_FILE),$(CERT_DIR)/client.key)
@@ -15,8 +31,11 @@ PORT ?= 8787
 REAL_ROADWORKS_GEOJSON ?= examples/maplibre/data/real-roadworks.geojson
 REAL_ROADWORKS_FETCHED_AT ?= $(shell date +%Y-%m-%d)
 REAL_ROADWORKS_FIXTURE_DIR ?=
+AUTOBAHN_ROADS ?= A9,A92
+AUTOBAHN_SERVICES ?= roadworks,warning,closure
+AUTOBAHN_GEOJSON ?= $(OUT_DIR)/autobahn.geojson
 
-.PHONY: help cert fetch convert sample real-sample web all fmt test vet check clean doctor
+.PHONY: help cert fetch convert sample real-sample autobahn web all fmt test vet check clean doctor
 
 help:
 	@printf '\n'
@@ -29,25 +48,27 @@ help:
 	@printf 'Fast offline demo without credentials:\n'
 	@printf '  make sample web\n\n'
 	@printf 'Targets:\n'
-	@printf '  make cert      Find a .p12/.pfx below this directory and create %s + %s\n' '$(CERT_FILE)' '$(KEY_FILE)'
-	@printf '  make fetch     Fetch subscription XML and write converted GeoJSON to %s\n' '$(EVENTS_GEOJSON)'
-	@printf '  make convert   Convert %s to %s\n' '$(SUBSCRIPTION_XML)' '$(EVENTS_GEOJSON)'
-	@printf '  make sample    Convert the included synthetic XML fixture to %s\n' '$(EVENTS_GEOJSON)'
+	@printf '  make cert      Find a .p12/.pfx below this directory and create %s + %s\n' "$$CERT_FILE" "$$KEY_FILE"
+	@printf '  make fetch     Fetch subscription XML and write converted GeoJSON to %s\n' "$$EVENTS_GEOJSON"
+	@printf '  make convert   Convert %s to %s\n' "$$SUBSCRIPTION_XML" "$$EVENTS_GEOJSON"
+	@printf '  make sample    Convert the included synthetic XML fixture to %s\n' "$$EVENTS_GEOJSON"
 	@printf '  make real-sample  Refresh the small GitHub Pages roadworks excerpt\n'
-	@printf '  make web       Start the MapLibre demo server on http://127.0.0.1:%s/\n' '$(PORT)'
+	@printf '  make autobahn  Fetch the public Autobahn API (no credentials needed) to %s\n' "$$AUTOBAHN_GEOJSON"
+	@printf '  make web       Start the MapLibre demo server on http://127.0.0.1:%s/\n' "$$PORT"
 	@printf '  make all       Run cert, fetch, then web\n'
 	@printf '  make fmt       Format Go sources\n'
 	@printf '  make test      Run Go tests\n'
 	@printf '  make vet       Run go vet\n'
 	@printf '  make check     Run tests, JS syntax check, and public-folder safety checks\n'
 	@printf '  make doctor    Check required local tools\n'
-	@printf '  make clean     Remove generated output in %s, but keep certificates\n\n' '$(OUT_DIR)'
+	@printf '  make clean     Remove generated output in %s, but keep certificates\n\n' "$$OUT_DIR"
 	@printf 'Useful variables:\n'
 	@printf '  SUBSCRIPTION_ID=...  or MOBILITHEK_SUBSCRIPTION_ID=...\n'
 	@printf '  CERT_P12=/path/to/client.p12\n'
 	@printf '  FORCE_CERT=1       regenerate PEM files even if they already exist\n'
-	@printf '  CERT_FILE=%s KEY_FILE=%s\n' '$(CERT_FILE)' '$(KEY_FILE)'
-	@printf '  PORT=%s OUT_DIR=%s ENDPOINT=%s\n\n' '$(PORT)' '$(OUT_DIR)' '$(ENDPOINT)'
+	@printf '  CERT_FILE=%s KEY_FILE=%s\n' "$$CERT_FILE" "$$KEY_FILE"
+	@printf '  PORT=%s OUT_DIR=%s ENDPOINT=%s\n' "$$PORT" "$$OUT_DIR" "$$ENDPOINT"
+	@printf '  AUTOBAHN_ROADS=%s AUTOBAHN_SERVICES=%s\n\n' "$$AUTOBAHN_ROADS" "$$AUTOBAHN_SERVICES"
 
 doctor:
 	@set -euo pipefail; \
@@ -64,14 +85,15 @@ doctor:
 
 cert:
 	@set -euo pipefail; \
-	mkdir -p "$(CERT_DIR)"; \
-	if [[ "$${FORCE_CERT:-}" != "1" && -f "$(CERT_FILE)" && -f "$(KEY_FILE)" ]]; then \
-		echo "Using existing $(CERT_FILE) and $(KEY_FILE). Set FORCE_CERT=1 to regenerate."; \
+	umask 077; \
+	mkdir -p "$$CERT_DIR"; \
+	if [[ "$${FORCE_CERT:-}" != "1" && -f "$$CERT_FILE" && -f "$$KEY_FILE" ]]; then \
+		echo "Using existing $$CERT_FILE and $$KEY_FILE. Set FORCE_CERT=1 to regenerate."; \
 		exit 0; \
 	fi; \
 	p12="$${CERT_P12:-}"; \
 	if [[ -z "$$p12" ]]; then \
-		p12="$$(find . -type f \( -iname '*.p12' -o -iname '*.pfx' \) -not -path './.git/*' -not -path './$(CERT_DIR)/*' | sort | head -n 1)"; \
+		p12="$$(find . -type f \( -iname '*.p12' -o -iname '*.pfx' \) -not -path './.git/*' -not -path "./$$CERT_DIR/*" | sort | head -n 1)"; \
 	fi; \
 	if [[ -z "$$p12" ]]; then \
 		echo "No .p12/.pfx file found below this directory."; \
@@ -89,82 +111,89 @@ cert:
 		exit 1; \
 	fi; \
 	echo "Using PKCS#12 bundle: $$p12"; \
-	passin=(); \
-	if [[ -n "$${P12_PASSWORD:-}" ]]; then \
-		passin=(-passin "pass:$${P12_PASSWORD}"); \
-	else \
+	p12pass="$${P12_PASSWORD:-}"; \
+	if [[ -z "$$p12pass" ]]; then \
 		printf "PKCS#12 password (hidden, empty = let OpenSSL ask): "; \
 		stty -echo; IFS= read -r p12pass; stty echo; printf "\n"; \
-		if [[ -n "$$p12pass" ]]; then \
-			passin=(-passin "pass:$$p12pass"); \
-		fi; \
 	fi; \
-	openssl pkcs12 -in "$$p12" -clcerts -nokeys -out "$(CERT_FILE)" "$${passin[@]}"; \
-	openssl pkcs12 -in "$$p12" -nocerts -nodes -out "$(KEY_FILE)" "$${passin[@]}"; \
-	chmod 600 "$(CERT_FILE)" "$(KEY_FILE)"; \
+	if [[ -n "$$p12pass" ]]; then \
+		openssl pkcs12 -in "$$p12" -clcerts -nokeys -out "$$CERT_FILE" -passin stdin <<< "$$p12pass"; \
+		openssl pkcs12 -in "$$p12" -nocerts -nodes -out "$$KEY_FILE" -passin stdin <<< "$$p12pass"; \
+	else \
+		openssl pkcs12 -in "$$p12" -clcerts -nokeys -out "$$CERT_FILE"; \
+		openssl pkcs12 -in "$$p12" -nocerts -nodes -out "$$KEY_FILE"; \
+	fi; \
+	chmod 600 "$$CERT_FILE" "$$KEY_FILE"; \
 	unset p12pass P12_PASSWORD; \
-	echo "Wrote $(CERT_FILE) and $(KEY_FILE)."
+	echo "Wrote $$CERT_FILE and $$KEY_FILE."
 
 fetch:
 	@set -euo pipefail; \
-	subscription_id="$(SUBSCRIPTION_ID)"; \
+	subscription_id="$$SUBSCRIPTION_ID"; \
 	if [[ -z "$$subscription_id" ]]; then \
 		echo "Missing subscription ID."; \
 		echo "Set it with: MOBILITHEK_SUBSCRIPTION_ID=123456789012345678 make fetch"; \
 		echo "The subscription ID is assigned after subscribing to an offer in Mobilithek. It is not the offer ID."; \
 		exit 1; \
 	fi; \
-	mkdir -p "$(OUT_DIR)"; \
-	cmd=(go run ./cmd/mobilithek-fetch -subscription-id "$$subscription_id" -endpoint "$(ENDPOINT)" -out "$(SUBSCRIPTION_XML)" -geojson-out "$(EVENTS_GEOJSON)"); \
-	if [[ -f "$(CERT_FILE)" && -f "$(KEY_FILE)" ]]; then \
-		cmd+=(-cert "$(CERT_FILE)" -key "$(KEY_FILE)"); \
+	mkdir -p "$$OUT_DIR"; \
+	cmd=(go run ./cmd/mobilithek-fetch -subscription-id "$$subscription_id" -endpoint "$$ENDPOINT" -out "$$SUBSCRIPTION_XML" -geojson-out "$$EVENTS_GEOJSON"); \
+	if [[ -f "$$CERT_FILE" && -f "$$KEY_FILE" ]]; then \
+		cmd+=(-cert "$$CERT_FILE" -key "$$KEY_FILE"); \
 	else \
-		echo "No client certificate found at $(CERT_FILE) and $(KEY_FILE)."; \
+		echo "No client certificate found at $$CERT_FILE and $$KEY_FILE."; \
 		echo "Trying without mTLS. If Mobilithek returns 401/403, run: make cert"; \
 	fi; \
-	if [[ -n "$(CA_FILE)" ]]; then \
-		cmd+=(-ca "$(CA_FILE)"); \
+	if [[ -n "$$CA_FILE" ]]; then \
+		cmd+=(-ca "$$CA_FILE"); \
 	fi; \
 	"$${cmd[@]}"; \
 	echo "Done. Start the demo with: make web"; \
-	echo "Open converted data: http://127.0.0.1:$(PORT)/?data=/converted/events.geojson"
+	echo "Open converted data: http://127.0.0.1:$$PORT/?data=/converted/events.geojson"
 
 convert:
 	@set -euo pipefail; \
-	if [[ ! -f "$(SUBSCRIPTION_XML)" ]]; then \
-		echo "Missing $(SUBSCRIPTION_XML). Run make fetch first, or set SUBSCRIPTION_XML=/path/to/subscription.xml."; \
+	if [[ ! -f "$$SUBSCRIPTION_XML" ]]; then \
+		echo "Missing $$SUBSCRIPTION_XML. Run make fetch first, or set SUBSCRIPTION_XML=/path/to/subscription.xml."; \
 		exit 1; \
 	fi; \
-	mkdir -p "$(OUT_DIR)"; \
-	go run ./cmd/mobilithek-geojson -in "$(SUBSCRIPTION_XML)" -out "$(EVENTS_GEOJSON)"; \
-	echo "Converted data ready: $(EVENTS_GEOJSON)"
+	mkdir -p "$$OUT_DIR"; \
+	go run ./cmd/mobilithek-geojson -in "$$SUBSCRIPTION_XML" -out "$$EVENTS_GEOJSON"; \
+	echo "Converted data ready: $$EVENTS_GEOJSON"
 
 sample:
 	@set -euo pipefail; \
-	mkdir -p "$(OUT_DIR)"; \
-	go run ./cmd/mobilithek-geojson -in "$(SAMPLE_XML)" -out "$(EVENTS_GEOJSON)"; \
-	echo "Sample GeoJSON ready: $(EVENTS_GEOJSON)"; \
+	mkdir -p "$$OUT_DIR"; \
+	go run ./cmd/mobilithek-geojson -in "$$SAMPLE_XML" -out "$$EVENTS_GEOJSON"; \
+	echo "Sample GeoJSON ready: $$EVENTS_GEOJSON"; \
 	echo "Start the demo with: make web"
 
 real-sample:
 	@set -euo pipefail; \
-	cmd=(node examples/maplibre/data/build-real-roadworks.mjs --fetched-at "$(REAL_ROADWORKS_FETCHED_AT)" --output "$(REAL_ROADWORKS_GEOJSON)"); \
-	if [[ -n "$(REAL_ROADWORKS_FIXTURE_DIR)" ]]; then \
-		cmd+=(--fixture-dir "$(REAL_ROADWORKS_FIXTURE_DIR)"); \
+	cmd=(node examples/maplibre/data/build-real-roadworks.mjs --fetched-at "$$REAL_ROADWORKS_FETCHED_AT" --output "$$REAL_ROADWORKS_GEOJSON"); \
+	if [[ -n "$$REAL_ROADWORKS_FIXTURE_DIR" ]]; then \
+		cmd+=(--fixture-dir "$$REAL_ROADWORKS_FIXTURE_DIR"); \
 	fi; \
 	"$${cmd[@]}"
 
+autobahn:
+	@set -euo pipefail; \
+	mkdir -p "$$OUT_DIR"; \
+	go run ./cmd/mobilithek-autobahn -roads "$$AUTOBAHN_ROADS" -services "$$AUTOBAHN_SERVICES" -out "$$AUTOBAHN_GEOJSON"; \
+	echo "Autobahn API data ready: $$AUTOBAHN_GEOJSON"; \
+	echo "Start the demo with: make web EVENTS_GEOJSON=$$AUTOBAHN_GEOJSON"
+
 web:
 	@set -euo pipefail; \
-	if [[ -f "$(EVENTS_GEOJSON)" ]]; then \
-		echo "Converted data URL: http://127.0.0.1:$(PORT)/?data=/converted/events.geojson"; \
+	if [[ -f "$$EVENTS_GEOJSON" ]]; then \
+		echo "Converted data URL: http://127.0.0.1:$$PORT/?data=/converted/events.geojson"; \
 	else \
-		echo "No $(EVENTS_GEOJSON) found. Starting with built-in sample data."; \
+		echo "No $$EVENTS_GEOJSON found. Starting with built-in sample data."; \
 		echo "Create converted data with: make sample   or   make fetch"; \
-		echo "Sample URL: http://127.0.0.1:$(PORT)/"; \
+		echo "Sample URL: http://127.0.0.1:$$PORT/"; \
 	fi; \
 	echo "Stop server with Ctrl-C."; \
-	PORT="$(PORT)" go run ./examples/maplibre
+	go run ./examples/maplibre
 
 all: cert fetch web
 
@@ -181,7 +210,7 @@ check: test
 	@set -euo pipefail; \
 	node --check examples/maplibre/app.js; \
 	node --check examples/maplibre/data/build-real-roadworks.mjs; \
-	node -e 'const fs=require("fs"); const data=JSON.parse(fs.readFileSync("$(REAL_ROADWORKS_GEOJSON)","utf8")); if (data.type !== "FeatureCollection" || data.features.length !== 42) throw new Error("expected 42 real roadworks features"); for (const feature of data.features) { if (!feature.properties.sourceUrl || !feature.properties.fetchedAt) throw new Error("missing roadworks source metadata"); }'; \
+	node -e 'const fs=require("fs"); const path=process.env.REAL_ROADWORKS_GEOJSON; const data=JSON.parse(fs.readFileSync(path,"utf8")); if (data.type !== "FeatureCollection" || data.features.length !== 42) throw new Error("expected 42 real roadworks features"); for (const feature of data.features) { if (!feature.properties.sourceUrl || !feature.properties.fetchedAt) throw new Error("missing roadworks source metadata"); }'; \
 	forbidden_files="$$(git ls-files --cached --others --exclude-standard | rg '(^|/)(\.DS_Store|\.env(\..*)?|[^/]+\.(p12|pfx|key|pem|crt|cer|der))$$' || true)"; \
 	if [[ -n "$$forbidden_files" ]]; then \
 		echo "Public-folder safety check failed: credential or metadata file would be committed."; \
@@ -195,5 +224,5 @@ check: test
 	echo "Checks passed."
 
 clean:
-	@rm -rf "$(OUT_DIR)"
-	@echo "Removed $(OUT_DIR). Certificates in $(CERT_DIR) were not touched."
+	@rm -rf "$$OUT_DIR"
+	@echo "Removed $$OUT_DIR. Certificates in $$CERT_DIR were not touched."

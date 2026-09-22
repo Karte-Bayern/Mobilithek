@@ -32,3 +32,9 @@ func TestEndpointURLRejectsNonNumericSubscriptionID(t *testing.T) {
 		t.Fatal("EndpointURL() accepted non-numeric subscription ID")
 	}
 }
+
+func TestCandidateURLsAutoModePropagatesValidationError(t *testing.T) {
+	if _, err := CandidateURLs(DefaultBaseURL, "abc", EndpointAuto); err == nil {
+		t.Fatal("CandidateURLs() accepted a non-numeric subscription ID in auto mode")
+	}
+}

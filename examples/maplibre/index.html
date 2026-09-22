@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mobilithek MapLibre Example</title>
-    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" integrity="sha384-MinO0mNliZ3vwppuPOUnGa+iq619pfMhLVUXfC4LHwSCvF9H+6P/KO4Q7qBOYV5V" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -13,7 +13,7 @@
         <p class="eyebrow">Karte.Bayern Mobilithek Demo</p>
         <h1>Mobilithek Meldungen</h1>
         <p class="notice">Veralteter, statischer Datenabruf – nur zu Demonstrationszwecken.</p>
-        <p id="status">Lade echte Beispielmeldungen...</p>
+        <p id="status" role="status" aria-live="polite">Lade echte Beispielmeldungen...</p>
       </header>
 
       <dl class="summary" aria-label="Meldungsübersicht">
@@ -63,7 +63,7 @@
     </aside>
     <div id="map"></div>
 
-    <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+    <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js" integrity="sha384-SYKAG6cglRMN0RVvhNeBY0r3FYKNOJtznwA0v7B5Vp9tr31xAHsZC0DqkQ/pZDmj" crossorigin="anonymous"></script>
     <script src="app.js"></script>
   </body>
 </html>

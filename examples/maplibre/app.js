@@ -63,6 +63,15 @@ map.on("load", async () => {
       throw new Error(`Could not load ${dataURL}: HTTP ${response.status}`);
     }
     events = await response.json();
+    if (!isFeatureCollection(events)) {
+      throw new Error(`${dataURL} is not a valid GeoJSON FeatureCollection`);
+    }
+    // "properties": null is legal GeoJSON but not something the rest of this
+    // file guards against, since every renderer below reads feature.properties.*.
+    events.features = events.features.map((feature) => ({
+      ...feature,
+      properties: feature && typeof feature.properties === "object" && feature.properties !== null ? feature.properties : {}
+    }));
   } catch (error) {
     statusEl.textContent = error.message;
     console.error(error);
@@ -187,7 +196,7 @@ function renderList(data) {
     button.innerHTML = `
       <span class="event-topline">
         <span class="badge"><span class="event-swatch" style="background:${colorFor(feature)}"></span>${escapeHtml(feature.properties.road || feature.properties.type || "Meldung")} · ${statusLabel(feature.properties.status)}</span>
-        <span class="event-start">${formatDate(feature.properties.start)}</span>
+        <span class="event-start">${escapeHtml(formatDate(feature.properties.start))}</span>
       </span>
       <span class="event-title">${escapeHtml(feature.properties.title || "Ohne Titel")}</span>
       <span class="event-meta">${escapeHtml(feature.properties.subtitle || feature.properties.start || "")}</span>
@@ -246,7 +255,7 @@ function showPopup(feature, lngLat) {
   // List clicks do not have a cursor position, so use the middle coordinate
   // of a line feature as a stable popup anchor.
   const anchor = lngLat || popupAnchor(feature);
-  const source = properties.sourceUrl
+  const source = isSafeLinkURL(properties.sourceUrl)
     ? `<br>Quelle: <a href="${escapeAttribute(properties.sourceUrl)}" rel="noreferrer">${escapeHtml(properties.source || "Quelle")}</a>`
     : "";
   const details = properties.description
@@ -350,7 +359,11 @@ function colorExpression() {
   if (colorByKey.size === 0) {
     return fallbackColor;
   }
-  const expression = ["match", ["coalesce", ["get", "road"], ["get", "type"]]];
+  // Mirrors colorKey()'s "road || type" (falsy, so an empty-string road also
+  // falls through to type) rather than a null-based coalesce, so the map
+  // paint color always agrees with the sidebar swatch for the same feature.
+  const roadOrType = ["case", ["all", ["has", "road"], ["!=", ["get", "road"], ""]], ["get", "road"], ["get", "type"]];
+  const expression = ["match", roadOrType];
   for (const [key, color] of colorByKey) {
     expression.push(key, color);
   }
@@ -426,4 +439,22 @@ function escapeHtml(value) {
 
 function escapeAttribute(value) {
   return escapeHtml(value).replace(/`/g, "&#96;");
+}
+
+function isFeatureCollection(data) {
+  return Boolean(data) && data.type === "FeatureCollection" && Array.isArray(data.features);
+}
+
+function isSafeLinkURL(value) {
+  // GeoJSON properties can come from an arbitrary ?data= URL (see the notice
+  // at the top of this file), so a sourceUrl of "javascript:..." must not
+  // render as a clickable link - only allow the two safe, expected schemes.
+  if (!value) {
+    return false;
+  }
+  try {
+    return ["http:", "https:"].includes(new URL(value, window.location.href).protocol);
+  } catch {
+    return false;
+  }
 }

@@ -52,6 +52,9 @@ func main() {
 	if *subscriptionID == "" {
 		log.Fatal("missing -subscription-id or MOBILITHEK_SUBSCRIPTION_ID")
 	}
+	if *geojsonOut != "" && *geojsonOut != "-" && *geojsonOut == *out {
+		log.Fatal("-out and -geojson-out must not be the same path: writing the GeoJSON would overwrite the raw XML")
+	}
 
 	client, err := mobilithek.New(
 		mobilithek.WithBaseURL(*baseURL),
@@ -123,6 +126,11 @@ func writeGeoJSON(path string, body []byte, subscriptionID string) error {
 		return err
 	}
 
+	if path == "-" {
+		_, err := os.Stdout.Write(output)
+		return err
+	}
+
 	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil && filepath.Dir(path) != "." {
 		return err
 	}
@@ -162,10 +170,17 @@ func requestHeaders(etag string, ifModifiedSince string, extraHeaders []string) 
 
 func parseHeaderFlag(raw string) (string, string, error) {
 	// Accept both common CLI styles, while still canonicalizing the final
-	// field name through net/http before the request is built.
-	name, value, ok := strings.Cut(raw, ":")
+	// field name through net/http before the request is built. Tried in
+	// this order so a value that itself contains a bare colon (e.g.
+	// "X-Demo=12:30pm") doesn't get misparsed: "Name: value" (colon
+	// immediately followed by a space, the canonical HTTP style) first,
+	// then "Name=value", then a bare "Name:value" as a last resort.
+	name, value, ok := strings.Cut(raw, ": ")
 	if !ok {
 		name, value, ok = strings.Cut(raw, "=")
+	}
+	if !ok {
+		name, value, ok = strings.Cut(raw, ":")
 	}
 	if !ok {
 		return "", "", fmt.Errorf("invalid header %q: use 'Name: value' or 'Name=value'", raw)

@@ -1,19 +1,13 @@
 # mobilithek
 
-Go client and small demos for retrieving Mobilithek subscriptions, including certificate-authenticated machine-account access.
+Go client and small demos for retrieving [Mobilithek](https://mobilithek.info/) subscriptions, including certificate-authenticated machine-account access, plus a second, credential-free source: the public [Autobahn API](https://verkehr.autobahn.de/o/autobahn).
 
-This repository is intended for two use cases:
+Two uses:
 
-- as an importable Go package: `github.com/karte-bayern/mobilithek`
-- as a minimal public demo for fetching Mobilithek data and displaying prepared GeoJSON in MapLibre GL JS
+- Go package: `github.com/karte-bayern/mobilithek`
+- Demo: fetch data from either source and display it as GeoJSON in MapLibre GL JS
 
-No credentials, private keys, real certificates, real subscription IDs, or production data are included.
-
-## Built For Karte.Bayern
-
-This repository was created while working on [Karte.Bayern](https://karte.bayern/). For Karte.Bayern I already had to understand Mobilithek machine-account access, subscription endpoints, certificate handling, and DATEX II-to-GeoJSON conversion. The reusable parts of that work live here as a small Go package and demo setup.
-
-If you want a fast map for Bavaria with practical geographic context, try [Karte.Bayern](https://karte.bayern/).
+No credentials, private keys, certificates, real subscription IDs, or production data are included. Built while working on [Karte.Bayern](https://karte.bayern/); the reusable parts of that work — machine-account access, subscription endpoints, certificate handling, Autobahn API access, and conversion to a shared GeoJSON model — live here. See [docs/sources.md](docs/sources.md) for the sources this package supports and how to combine them.
 
 ## Install
 
@@ -21,49 +15,26 @@ If you want a fast map for Bavaria with practical geographic context, try [Karte
 go get github.com/karte-bayern/mobilithek
 ```
 
-## Quick Start With Make
+## Quick Start
 
-The shortest offline demo works without Mobilithek credentials:
+Offline, no Mobilithek credentials needed:
 
 ```bash
 make sample web
 ```
 
-That converts the synthetic XML fixture from `examples/data/sample-subscription.xml` to `out/events.geojson` and starts the MapLibre demo. Open:
-
-```text
-http://127.0.0.1:8787/?data=/converted/events.geojson
-```
-
-For real Mobilithek data, put your `.p12`/`.pfx` certificate bundle anywhere below this repository, then run:
+With real data, put your `.p12`/`.pfx` certificate bundle anywhere below this repository, then:
 
 ```bash
 make cert
-MOBILITHEK_SUBSCRIPTION_ID=123456789012345678 make fetch
-make web
+MOBILITHEK_SUBSCRIPTION_ID=123456789012345678 make fetch web
 ```
 
-`make cert` searches this directory and all subdirectories for a `.p12`/`.pfx` file, converts it to `certs/client.crt` and `certs/client.key`, and keeps the private key local. If no bundle is found, it tells you where to get the certificate in Mobilithek and asks for a path.
+Both open the MapLibre demo at `http://127.0.0.1:8787/?data=/converted/events.geojson`. Run `make` with no arguments to list every target (`cert`, `fetch`, `convert`, `sample`, `real-sample`, `web`, `all`, `test`, `check`, `clean`, `doctor`, ...).
 
-`make fetch` downloads the subscription XML to `out/subscription.xml` and writes the converted GeoJSON to `out/events.geojson`.
+## Fetch A Subscription Manually
 
-`make web` starts the MapLibre demo. Open the converted data view:
-
-```text
-http://127.0.0.1:8787/?data=/converted/events.geojson
-```
-
-After the certificate has been converted, the complete real-data flow can be run as:
-
-```bash
-MOBILITHEK_SUBSCRIPTION_ID=123456789012345678 make all
-```
-
-Run `make` to list all available commands.
-
-## Fetch A Subscription
-
-Mobilithek machine accounts usually provide a PKCS#12 file (`.p12`/`.pfx`) and a password. The Go standard library expects PEM files, so convert the certificate first:
+Mobilithek machine accounts provide a PKCS#12 file (`.p12`/`.pfx`). Convert it to PEM once:
 
 ```bash
 openssl pkcs12 -in certs/client.p12 -clcerts -nokeys -out certs/client.crt
@@ -71,129 +42,43 @@ openssl pkcs12 -in certs/client.p12 -nocerts -nodes -out certs/client.key
 chmod 600 certs/client.key
 ```
 
-Then fetch a subscription with the example CLI:
+Then fetch and convert with the bundled CLI:
 
 ```bash
 export MOBILITHEK_SUBSCRIPTION_ID=123456789012345678
 export MOBILITHEK_CERT_FILE=certs/client.crt
 export MOBILITHEK_KEY_FILE=certs/client.key
 
-go run ./cmd/mobilithek-fetch \
-  -out out/subscription.xml \
-  -geojson-out out/events.geojson
+go run ./cmd/mobilithek-fetch -out out/subscription.xml -geojson-out out/events.geojson
 ```
 
-`123456789012345678` is a placeholder. Use your own subscription ID from your Mobilithek account.
+`123456789012345678` is a placeholder; use your own subscription ID. Conditional requests (`-etag`, `-if-modified-since`, repeated `-header`) are supported, and HTTP `304 Not Modified` is treated as a no-op — run `go run ./cmd/mobilithek-fetch -h` for all flags. Programmatic callers can pass `mobilithek.WithMaxRetries` to `mobilithek.New` to retry transient network errors and HTTP 429/5xx responses with backoff.
 
-The CLI writes the raw DATEX II XML to `out/subscription.xml` and, when `-geojson-out` is set, a generic event GeoJSON file to `out/events.geojson`.
-
-For conditional HTTP requests, pass standard validators from a previous response:
+## Fetch From The Autobahn API (No Credentials)
 
 ```bash
-go run ./cmd/mobilithek-fetch \
-  -etag '"previous-etag"' \
-  -if-modified-since "Sun, 05 Jul 2026 12:00:00 GMT" \
-  -header "Accept-Language: de-DE" \
-  -out out/subscription.xml \
-  -geojson-out out/events.geojson
+go run ./cmd/mobilithek-autobahn -roads A9,A92 -services roadworks,warning,closure -out out/autobahn.geojson
 ```
 
-`-etag` sends `If-None-Match`, `-if-modified-since` sends `If-Modified-Since`, and repeated `-header` flags add further request headers. HTTP `304 Not Modified` is treated as a successful no-op.
+or `make autobahn`. See [docs/sources.md](docs/sources.md) for every service kind, combining this with Mobilithek data via `MergeGeoJSON`, and filtering events with `-bbox`/`-status` on `mobilithek-geojson`.
 
 ## Use As A Go Package
 
-```go
-package main
-
-import (
-	"context"
-	"log"
-	"os"
-	"time"
-
-	"github.com/karte-bayern/mobilithek"
-)
-
-func main() {
-	ctx, cancel := context.WithTimeout(context.Background(), 60*time.Second)
-	defer cancel()
-
-	client, err := mobilithek.New(
-		mobilithek.WithClientCertificate(
-			os.Getenv("MOBILITHEK_CERT_FILE"),
-			os.Getenv("MOBILITHEK_KEY_FILE"),
-		),
-	)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	response, err := client.FetchSubscription(
-		ctx,
-		os.Getenv("MOBILITHEK_SUBSCRIPTION_ID"),
-		mobilithek.EndpointAuto,
-	)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	log.Printf("status=%d bytes=%d url=%s", response.StatusCode, len(response.Body), response.URL)
-}
-```
+See [examples/fetch_subscription/main.go](examples/fetch_subscription/main.go) for a minimal runnable example that fetches a subscription and converts it to GeoJSON.
 
 ## MapLibre And GitHub Pages Demo
 
-The MapLibre example is the GitHub Pages demo served at:
+Live at <https://karte-bayern.github.io/Mobilithek/examples/maplibre/>, backed by a static, deliberately outdated excerpt of 42 real Autobahn-App roadworks: [examples/maplibre/data/real-roadworks.geojson](examples/maplibre/data/real-roadworks.geojson) (refresh with `make real-sample`).
 
-```text
-https://karte-bayern.github.io/Mobilithek/examples/maplibre/
-```
-
-By default it loads a curated excerpt of 42 real roadworks from the public Autobahn-App API:
-
-- [examples/maplibre/data/real-roadworks.geojson](examples/maplibre/data/real-roadworks.geojson)
-
-The GeoJSON file intentionally contains simplified features instead of a full live export. Each feature keeps its source URL and `fetchedAt` date. Refresh it with:
-
-```bash
-make real-sample
-```
+Run it locally:
 
 ```bash
 go run ./examples/maplibre
 ```
 
-Open:
+Open `http://127.0.0.1:8787/`. See [examples/maplibre/README.md](examples/maplibre/README.md) for the interface and [docs/conversion.md](docs/conversion.md) for the XML-to-GeoJSON workflow and its limitations.
 
-```text
-http://127.0.0.1:8787/
-```
-
-See [examples/maplibre/README.md](examples/maplibre/README.md).
-
-You can also test the converter without credentials:
-
-```bash
-go run ./cmd/mobilithek-geojson \
-  -in examples/data/sample-subscription.xml \
-  -out out/events.geojson
-```
-
-Then open the converted output in the map:
-
-```text
-http://127.0.0.1:8787/?data=/converted/events.geojson
-```
-
-To view converted subscription data after running the fetch command above, open:
-
-```text
-http://127.0.0.1:8787/?data=/converted/events.geojson
-```
-
-See [docs/conversion.md](docs/conversion.md) for the XML-to-GeoJSON workflow and limitations.
-
-Generated GeoJSON follows the RFC 7946 coordinate order (`longitude, latitude`) and includes optional `bbox` members for the feature collection and individual features.
+Generated GeoJSON follows RFC 7946 coordinate order (`longitude, latitude`) with optional `bbox` members on the collection and each feature.
 
 ## Repository Layout
 
@@ -202,15 +87,19 @@ Generated GeoJSON follows the RFC 7946 coordinate order (`longitude, latitude`) 
 ├── Makefile                   One-command local workflows
 ├── cmd/mobilithek-fetch/      Small CLI for manual subscription fetches
 ├── cmd/mobilithek-geojson/    Converts fetched DATEX II XML to GeoJSON
+├── cmd/mobilithek-autobahn/   Fetches the public Autobahn API to GeoJSON
 ├── docs/                      Operational notes
 ├── examples/data/             Synthetic XML fixture for converter testing
-├── examples/fetch_subscription/
+├── examples/fetch_subscription/ Minimal runnable fetch-and-convert example
 ├── examples/maplibre/         Browser demo and GitHub Pages entry point
 ├── examples/maplibre/data/    Small static demo data and data generator
-├── client.go                  HTTP and TLS client
+├── client.go                  HTTP and TLS client (with optional retries)
+├── autobahn.go                Autobahn API client and Event conversion
 ├── datex.go                   Generic DATEX II event extraction
 ├── endpoints.go               Mobilithek endpoint URL helpers
-├── geojson.go                 GeoJSON conversion helpers
+├── geojson.go                 GeoJSON conversion and MergeGeoJSON
+├── filter.go                  Event filtering (bbox, status, source)
+├── retry.go                   Shared backoff helper for both clients
 └── response.go                Response helpers
 ```
 

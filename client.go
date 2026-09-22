@@ -20,11 +20,13 @@ const defaultMaxBytes = 250 * 1024 * 1024
 
 // Client fetches Mobilithek subscription data over HTTP or mTLS.
 type Client struct {
-	baseURL    string
-	httpClient *http.Client
-	userAgent  string
-	accept     string
-	maxBytes   int64
+	baseURL      string
+	httpClient   *http.Client
+	userAgent    string
+	accept       string
+	maxBytes     int64
+	maxRetries   int
+	retryBackoff time.Duration
 }
 
 // Option configures a Client created by New.
@@ -41,16 +43,19 @@ type clientConfig struct {
 	caFile             string
 	insecureSkipVerify bool
 	timeout            time.Duration
+	maxRetries         int
+	retryBackoff       time.Duration
 }
 
 // New creates a Mobilithek client with conservative defaults.
 func New(options ...Option) (*Client, error) {
 	cfg := clientConfig{
-		baseURL:   DefaultBaseURL,
-		userAgent: defaultUserAgent,
-		accept:    "application/xml,text/xml,application/json,text/json,*/*",
-		maxBytes:  defaultMaxBytes,
-		timeout:   60 * time.Second,
+		baseURL:      DefaultBaseURL,
+		userAgent:    defaultUserAgent,
+		accept:       "application/xml,text/xml,application/json,text/json,*/*",
+		maxBytes:     defaultMaxBytes,
+		timeout:      60 * time.Second,
+		retryBackoff: 200 * time.Millisecond,
 	}
 
 	for _, option := range options {
@@ -72,11 +77,13 @@ func New(options ...Option) (*Client, error) {
 	}
 
 	return &Client{
-		baseURL:    strings.TrimRight(cfg.baseURL, "/"),
-		httpClient: httpClient,
-		userAgent:  cfg.userAgent,
-		accept:     cfg.accept,
-		maxBytes:   cfg.maxBytes,
+		baseURL:      strings.TrimRight(cfg.baseURL, "/"),
+		httpClient:   httpClient,
+		userAgent:    cfg.userAgent,
+		accept:       cfg.accept,
+		maxBytes:     cfg.maxBytes,
+		maxRetries:   cfg.maxRetries,
+		retryBackoff: cfg.retryBackoff,
 	}, nil
 }
 
@@ -183,6 +190,32 @@ func WithInsecureSkipVerify(enabled bool) Option {
 	}
 }
 
+// WithMaxRetries enables automatic retries in FetchURL for transient network
+// errors and HTTP 429/5xx responses, using exponential backoff with jitter
+// between attempts. The default, 0, disables retries entirely so existing
+// callers see unchanged behavior unless they opt in.
+func WithMaxRetries(maxRetries int) Option {
+	return func(cfg *clientConfig) error {
+		if maxRetries < 0 {
+			return errors.New("max retries must not be negative")
+		}
+		cfg.maxRetries = maxRetries
+		return nil
+	}
+}
+
+// WithRetryBackoff sets the base delay used by the exponential backoff
+// enabled through WithMaxRetries. The default is 200ms.
+func WithRetryBackoff(base time.Duration) Option {
+	return func(cfg *clientConfig) error {
+		if base <= 0 {
+			return errors.New("retry backoff must be greater than zero")
+		}
+		cfg.retryBackoff = base
+		return nil
+	}
+}
+
 // FetchSubscription tries one Mobilithek subscription endpoint, or all known
 // candidates when endpoint is EndpointAuto.
 func (c *Client) FetchSubscription(ctx context.Context, subscriptionID string, endpoint EndpointKind) (*Response, error) {
@@ -221,9 +254,40 @@ func (c *Client) FetchSubscriptionWithHeaders(ctx context.Context, subscriptionI
 	return nil, lastErr
 }
 
-// FetchURL performs a single GET request and returns response metadata plus the
-// decoded body, respecting gzip encoding and the configured size limit.
+// FetchURL performs a GET request and returns response metadata plus the
+// decoded body, respecting gzip encoding and the configured size limit. If
+// WithMaxRetries was used to configure the client, transient network errors
+// and HTTP 429/5xx responses are retried with exponential backoff and
+// jitter; otherwise a single attempt is made.
+//
+// Any HTTP response, including a non-2xx one, is still returned with a nil
+// error once attempts are exhausted or a non-retryable status is seen — the
+// same "caller inspects StatusCode" contract FetchURL always had. Only a
+// request that never produced an HTTP response (a transport-level failure
+// on every attempt) results in a non-nil error.
 func (c *Client) FetchURL(ctx context.Context, rawURL string, headers map[string]string) (*Response, error) {
+	var lastErr error
+	for attempt := 0; attempt <= c.maxRetries; attempt++ {
+		if attempt > 0 {
+			if err := sleepWithContext(ctx, retryDelay(attempt-1, c.retryBackoff)); err != nil {
+				return nil, err
+			}
+		}
+
+		response, err := c.fetchURLOnce(ctx, rawURL, headers)
+		if err != nil {
+			lastErr = err
+			continue
+		}
+		if attempt < c.maxRetries && isRetryableStatus(response.StatusCode) {
+			continue
+		}
+		return response, nil
+	}
+	return nil, lastErr
+}
+
+func (c *Client) fetchURLOnce(ctx context.Context, rawURL string, headers map[string]string) (*Response, error) {
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, rawURL, nil)
 	if err != nil {
 		return nil, err
@@ -286,7 +350,14 @@ func newHTTPClient(cfg clientConfig) (*http.Client, error) {
 		tlsConfig.RootCAs = pool
 	}
 
-	transport := http.DefaultTransport.(*http.Transport).Clone()
+	// http.DefaultTransport is a mutable package-level variable; another
+	// package in the same process (e.g. an HTTP auto-instrumentation
+	// library) may have replaced it with a RoundTripper that is not a
+	// *http.Transport, so this cannot assume the type assertion succeeds.
+	transport := &http.Transport{}
+	if defaultTransport, ok := http.DefaultTransport.(*http.Transport); ok {
+		transport = defaultTransport.Clone()
+	}
 	transport.TLSClientConfig = tlsConfig
 
 	return &http.Client{

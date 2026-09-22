@@ -33,7 +33,11 @@ After fetching a real subscription and converting it to `out/events.geojson`, op
 http://127.0.0.1:8787/?data=/converted/events.geojson
 ```
 
-The example server exposes only that exact converted file from `out/`.
+The example server exposes one file at that URL, `out/events.geojson` by default. Point it at a different file — for example data pulled from the public Autobahn API instead of a Mobilithek subscription, see [docs/sources.md](../../docs/sources.md) — with the `EVENTS_GEOJSON` environment variable:
+
+```bash
+EVENTS_GEOJSON=out/autobahn.geojson go run ./examples/maplibre
+```
 
 To test this conversion flow without Mobilithek credentials, create `out/events.geojson` from the included synthetic XML:
 

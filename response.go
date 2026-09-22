@@ -71,10 +71,9 @@ type StatusError struct {
 }
 
 func (e *StatusError) Error() string {
-	body := strings.TrimSpace(string(e.Body))
-	if len(body) > 240 {
-		body = body[:240] + "..."
-	}
+	// truncate (defined in datex.go) cuts by rune, not by byte, so this
+	// can't split a multi-byte UTF-8 character and emit invalid UTF-8.
+	body := truncate(strings.TrimSpace(string(e.Body)), 240)
 	if body == "" {
 		return fmt.Sprintf("%s returned HTTP %d", e.URL, e.StatusCode)
 	}
